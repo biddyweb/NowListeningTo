@@ -24,4 +24,16 @@
     return retVal;
 }
 
++(NSString *)songStringWithSong:(Song *)aSong{
+    NSString *retVal = nil;
+
+    if (aSong){
+        retVal = [NSString stringWithFormat:@"NLT: %@ by %@", aSong.title, aSong.artist];
+    }else{
+        retVal = @"Test";
+    }
+    
+    return retVal;
+}
+
 @end

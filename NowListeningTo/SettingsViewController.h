@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SettingsViewController : UITableViewController
+@interface SettingsViewController : UITableViewController{
+    
+    __weak IBOutlet UISwitch *twitterSwitch;
+    __weak IBOutlet UISwitch *facebookSwitch;
+    __weak IBOutlet UISwitch *nltSwitch;
+}
 
 @end

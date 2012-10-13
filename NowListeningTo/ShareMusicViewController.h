@@ -14,5 +14,6 @@
 }
 
 - (IBAction)refreshButtonTapped:(id)sender;
+- (IBAction)shareButtonTapped:(id)sender;
 
 @end

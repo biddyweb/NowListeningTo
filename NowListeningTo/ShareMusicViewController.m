@@ -7,6 +7,7 @@
 //
 
 #import "ShareMusicViewController.h"
+#import "SocialManager.h"
 #import <QuartzCore/QuartzCore.h>
 #import "MusicHelper.h"
 
@@ -64,5 +65,9 @@
 - (IBAction)refreshButtonTapped:(id)sender {
     [self refreshSong];
     [self autoResizeUILabelFont:songLabel];
+}
+
+- (IBAction)shareButtonTapped:(id)sender {
+    [[SocialManager sharedInstance] shareSong:[MusicHelper currentSong] withAccountType:SMAccountTypeAll];
 }
 @end

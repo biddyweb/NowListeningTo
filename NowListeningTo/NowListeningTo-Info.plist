@@ -4,6 +4,16 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
+	<key>ACFacebookAppIDKey</key>
+	<string>359882274105102</string>
+	<key>ACFacebookVersionKey</key>
+	<string>1.0</string>
+	<key>ACFacebookPermissionGroupKey</key>
+	<string>write</string>
+	<key>ACFacebookPermissionsKey</key>
+	<array>
+		<string>publish_stream</string>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>${PRODUCT_NAME}</string>
 	<key>CFBundleExecutable</key>

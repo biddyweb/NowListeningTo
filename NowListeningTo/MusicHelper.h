@@ -12,5 +12,6 @@
 @interface MusicHelper : NSObject
 
 +(Song *) currentSong;
++(NSString *)songStringWithSong:(Song *)aSong;
 
 @end

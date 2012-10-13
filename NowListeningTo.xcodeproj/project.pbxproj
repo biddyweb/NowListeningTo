@@ -22,6 +22,9 @@
 		67B8271C16290AA30013E4D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271B16290AA30013E4D4 /* Default-568h@2x.png */; };
 		67B8271F16290AA30013E4D4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271D16290AA30013E4D4 /* MainStoryboard.storyboard */; };
 		67B8272216290AA30013E4D4 /* ShareMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B8272116290AA30013E4D4 /* ShareMusicViewController.m */; };
+		67E093801629FC63007BD447 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0937F1629FC63007BD447 /* Social.framework */; };
+		67E093841629FCFD007BD447 /* SocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E093831629FCFD007BD447 /* SocialManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		67E0938B1629FE4F007BD447 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0938A1629FE4F007BD447 /* Accounts.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +51,11 @@
 		67B8271E16290AA30013E4D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		67B8272016290AA30013E4D4 /* ShareMusicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareMusicViewController.h; sourceTree = "<group>"; };
 		67B8272116290AA30013E4D4 /* ShareMusicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareMusicViewController.m; sourceTree = "<group>"; };
+		67E0937F1629FC63007BD447 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		67E093821629FCFD007BD447 /* SocialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialManager.h; sourceTree = "<group>"; };
+		67E093831629FCFD007BD447 /* SocialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialManager.m; sourceTree = "<group>"; };
+		67E093891629FD52007BD447 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
+		67E0938A1629FE4F007BD447 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +63,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67E0938B1629FE4F007BD447 /* Accounts.framework in Frameworks */,
+				67E093801629FC63007BD447 /* Social.framework in Frameworks */,
 				671623F316291BE700DE00AB /* MediaPlayer.framework in Frameworks */,
 				67B8270616290AA30013E4D4 /* UIKit.framework in Frameworks */,
 				67B8270816290AA30013E4D4 /* Foundation.framework in Frameworks */,
@@ -65,9 +75,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		671623FF1629395100DE00AB /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				671624001629395100DE00AB /* Assets */,
+			);
+			name = Resources;
+			path = NowListeningTo/Resources;
+			sourceTree = "<group>";
+		};
+		671624001629395100DE00AB /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
 		67B826F616290AA30013E4D4 = {
 			isa = PBXGroup;
 			children = (
+				671623FF1629395100DE00AB /* Resources */,
 				67B8270B16290AA30013E4D4 /* NowListeningTo */,
 				67B8270416290AA30013E4D4 /* Frameworks */,
 				67B8270216290AA30013E4D4 /* Products */,
@@ -85,6 +112,8 @@
 		67B8270416290AA30013E4D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				67E0938A1629FE4F007BD447 /* Accounts.framework */,
+				67E0937F1629FC63007BD447 /* Social.framework */,
 				671623F216291BE700DE00AB /* MediaPlayer.framework */,
 				67B8270516290AA30013E4D4 /* UIKit.framework */,
 				67B8270716290AA30013E4D4 /* Foundation.framework */,
@@ -96,6 +125,9 @@
 		67B8270B16290AA30013E4D4 /* NowListeningTo */ = {
 			isa = PBXGroup;
 			children = (
+				67E093891629FD52007BD447 /* SynthesizeSingleton.h */,
+				67E093821629FCFD007BD447 /* SocialManager.h */,
+				67E093831629FCFD007BD447 /* SocialManager.m */,
 				671623EF16291BB700DE00AB /* MusicHelper.h */,
 				671623F016291BB700DE00AB /* MusicHelper.m */,
 				67B8271416290AA30013E4D4 /* AppDelegate.h */,
@@ -198,6 +230,7 @@
 				671623EE1629182000DE00AB /* SettingsViewController.m in Sources */,
 				671623F116291BB700DE00AB /* MusicHelper.m in Sources */,
 				671623F616291C2500DE00AB /* Song.m in Sources */,
+				67E093841629FCFD007BD447 /* SocialManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
