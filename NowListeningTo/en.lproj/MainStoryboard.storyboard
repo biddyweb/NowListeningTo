@@ -12,20 +12,8 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In Your Honor by Foo Fighters" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="260" translatesAutoresizingMaskIntoConstraints="NO" id="r2L-yc-KHb">
-                                <color key="backgroundColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="131" id="SqJ-Zq-aD9"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                                <color key="shadowColor" red="0.99271824050000002" green="0.99271824050000002" blue="0.99271824050000002" alpha="1" colorSpace="calibratedRGB"/>
-                                <size key="shadowOffset" width="0.0" height="1"/>
-                            </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You're listening to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGO-HM-4p1">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="260" id="6si-PT-9Gg"/>
                                     <constraint firstAttribute="height" constant="37" id="RQU-DJ-8xs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
@@ -37,6 +25,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jE2-L5-5r9">
                                 <constraints>
                                     <constraint firstAttribute="width" constant="105" id="Fi4-lo-b3i"/>
+                                    <constraint firstAttribute="height" constant="33" id="lml-Ey-Qpt"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Share">
@@ -59,27 +48,51 @@
                                 </items>
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                             </toolbar>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TLs-Ql-Jgg">
+                                <color key="backgroundColor" white="0.83000000000000007" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="In Your Honor by Foo Fighters" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="250" translatesAutoresizingMaskIntoConstraints="NO" id="r2L-yc-KHb">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="BYv-tD-OkF"/>
+                                    <constraint firstAttribute="height" constant="123" id="UgX-Cc-f1G"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="29"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" name="alternateSelectedControlTextColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="jE2-L5-5r9" firstAttribute="top" secondItem="3" secondAttribute="top" constant="272" id="1ZO-Fn-SdT"/>
+                            <constraint firstAttribute="trailing" secondItem="TLs-Ql-Jgg" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1Y5-cX-Vgr"/>
                             <constraint firstItem="S5j-FB-O3c" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="20a-UG-loh"/>
-                            <constraint firstAttribute="centerX" secondItem="r2L-yc-KHb" secondAttribute="centerX" type="user" id="KiT-li-Gtt"/>
-                            <constraint firstAttribute="centerX" secondItem="r2L-yc-KHb" secondAttribute="centerX" type="user" id="Oed-zi-FCD"/>
-                            <constraint firstItem="jGO-HM-4p1" firstAttribute="leading" secondItem="r2L-yc-KHb" secondAttribute="leading" type="default" id="Ots-Ug-5F3"/>
+                            <constraint firstItem="TLs-Ql-Jgg" firstAttribute="top" secondItem="3" secondAttribute="top" constant="121" id="2PE-hL-ASY"/>
+                            <constraint firstItem="jGO-HM-4p1" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="JYV-yK-WXU"/>
+                            <constraint firstItem="r2L-yc-KHb" firstAttribute="top" secondItem="3" secondAttribute="top" constant="134" id="Qwj-8x-Dwp"/>
                             <constraint firstItem="jGO-HM-4p1" firstAttribute="top" secondItem="3" secondAttribute="top" constant="64" id="Zhm-yN-Y9G"/>
+                            <constraint firstAttribute="bottom" secondItem="TLs-Ql-Jgg" secondAttribute="bottom" constant="145" id="Zjk-bt-Czf"/>
                             <constraint firstAttribute="centerX" secondItem="jE2-L5-5r9" secondAttribute="centerX" type="user" id="dgp-Eg-zvP"/>
                             <constraint firstAttribute="centerX" secondItem="jGO-HM-4p1" secondAttribute="centerX" type="user" id="eAz-fq-bCU"/>
                             <constraint firstItem="S5j-FB-O3c" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="gj0-1v-D27"/>
-                            <constraint firstItem="r2L-yc-KHb" firstAttribute="top" secondItem="3" secondAttribute="top" constant="121" id="j1C-Pt-bz8"/>
                             <constraint firstAttribute="centerX" secondItem="jGO-HM-4p1" secondAttribute="centerX" type="user" id="kOs-Rl-Vbc"/>
+                            <constraint firstAttribute="bottom" secondItem="jE2-L5-5r9" secondAttribute="bottom" constant="92" id="kQW-mW-C9U"/>
                             <constraint firstItem="S5j-FB-O3c" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="mvh-iB-xSe"/>
-                            <constraint firstAttribute="centerX" secondItem="r2L-yc-KHb" secondAttribute="centerX" type="user" id="tJL-sM-lUX"/>
+                            <constraint firstItem="TLs-Ql-Jgg" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="pTJ-gR-oO9"/>
+                            <constraint firstItem="r2L-yc-KHb" firstAttribute="centerX" secondItem="TLs-Ql-Jgg" secondAttribute="centerX" type="default" id="qce-Oa-4sC"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="NowListeningTo" id="BbC-vP-4IL">
-                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="91w-TU-uWL"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="91w-TU-uWL">
+                            <connections>
+                                <action selector="refreshButtonTapped:" destination="2" id="SaM-Jh-fPu"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="songLabel" destination="r2L-yc-KHb" id="Ysi-5a-414"/>
+                        <outlet property="songLabelContainer" destination="TLs-Ql-Jgg" id="D6z-AD-Cka"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
             </objects>
@@ -215,6 +228,11 @@
         </class>
         <class className="ShareMusicViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareMusicViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="refreshButtonTapped:"/>
+                <relationship kind="outlet" name="songLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="songLabelContainer" candidateClass="UIView"/>
+            </relationships>
         </class>
     </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

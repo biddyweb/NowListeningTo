@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ShareMusicViewController : UIViewController
+@interface ShareMusicViewController : UIViewController{
+    __weak IBOutlet UILabel *songLabel;
+    __weak IBOutlet UIView *songLabelContainer;
+}
+
+- (IBAction)refreshButtonTapped:(id)sender;
 
 @end

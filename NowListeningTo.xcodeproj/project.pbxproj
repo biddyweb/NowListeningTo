@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		671623EE1629182000DE00AB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 671623ED1629182000DE00AB /* SettingsViewController.m */; };
+		671623F116291BB700DE00AB /* MusicHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 671623F016291BB700DE00AB /* MusicHelper.m */; };
+		671623F316291BE700DE00AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671623F216291BE700DE00AB /* MediaPlayer.framework */; };
+		671623F616291C2500DE00AB /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 671623F516291C2500DE00AB /* Song.m */; };
 		67B8270616290AA30013E4D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270516290AA30013E4D4 /* UIKit.framework */; };
 		67B8270816290AA30013E4D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270716290AA30013E4D4 /* Foundation.framework */; };
 		67B8270A16290AA30013E4D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270916290AA30013E4D4 /* CoreGraphics.framework */; };
@@ -24,6 +27,11 @@
 /* Begin PBXFileReference section */
 		671623EC1629182000DE00AB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
 		671623ED1629182000DE00AB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
+		671623EF16291BB700DE00AB /* MusicHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicHelper.h; sourceTree = "<group>"; };
+		671623F016291BB700DE00AB /* MusicHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicHelper.m; sourceTree = "<group>"; };
+		671623F216291BE700DE00AB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		671623F416291C2500DE00AB /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
+		671623F516291C2500DE00AB /* Song.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Song.m; sourceTree = "<group>"; };
 		67B8270116290AA30013E4D4 /* NowListeningTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowListeningTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B8270516290AA30013E4D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		67B8270716290AA30013E4D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,6 +55,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				671623F316291BE700DE00AB /* MediaPlayer.framework in Frameworks */,
 				67B8270616290AA30013E4D4 /* UIKit.framework in Frameworks */,
 				67B8270816290AA30013E4D4 /* Foundation.framework in Frameworks */,
 				67B8270A16290AA30013E4D4 /* CoreGraphics.framework in Frameworks */,
@@ -76,6 +85,7 @@
 		67B8270416290AA30013E4D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				671623F216291BE700DE00AB /* MediaPlayer.framework */,
 				67B8270516290AA30013E4D4 /* UIKit.framework */,
 				67B8270716290AA30013E4D4 /* Foundation.framework */,
 				67B8270916290AA30013E4D4 /* CoreGraphics.framework */,
@@ -86,6 +96,8 @@
 		67B8270B16290AA30013E4D4 /* NowListeningTo */ = {
 			isa = PBXGroup;
 			children = (
+				671623EF16291BB700DE00AB /* MusicHelper.h */,
+				671623F016291BB700DE00AB /* MusicHelper.m */,
 				67B8271416290AA30013E4D4 /* AppDelegate.h */,
 				67B8271516290AA30013E4D4 /* AppDelegate.m */,
 				67B8271D16290AA30013E4D4 /* MainStoryboard.storyboard */,
@@ -93,6 +105,8 @@
 				67B8272116290AA30013E4D4 /* ShareMusicViewController.m */,
 				671623EC1629182000DE00AB /* SettingsViewController.h */,
 				671623ED1629182000DE00AB /* SettingsViewController.m */,
+				671623F416291C2500DE00AB /* Song.h */,
+				671623F516291C2500DE00AB /* Song.m */,
 				67B8270C16290AA30013E4D4 /* Supporting Files */,
 			);
 			path = NowListeningTo;
@@ -182,6 +196,8 @@
 				67B8271616290AA30013E4D4 /* AppDelegate.m in Sources */,
 				67B8272216290AA30013E4D4 /* ShareMusicViewController.m in Sources */,
 				671623EE1629182000DE00AB /* SettingsViewController.m in Sources */,
+				671623F116291BB700DE00AB /* MusicHelper.m in Sources */,
+				671623F616291C2500DE00AB /* Song.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
