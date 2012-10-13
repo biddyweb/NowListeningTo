@@ -6,13 +6,13 @@
 //  Copyright (c) 2012 Betzerra. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "ShareMusicViewController.h"
 
-@interface ViewController ()
+@interface ShareMusicViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ShareMusicViewController
 
 - (void)viewDidLoad
 {

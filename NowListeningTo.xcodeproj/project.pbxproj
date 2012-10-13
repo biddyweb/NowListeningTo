@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		671623EE1629182000DE00AB /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 671623ED1629182000DE00AB /* SettingsViewController.m */; };
 		67B8270616290AA30013E4D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270516290AA30013E4D4 /* UIKit.framework */; };
 		67B8270816290AA30013E4D4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270716290AA30013E4D4 /* Foundation.framework */; };
 		67B8270A16290AA30013E4D4 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270916290AA30013E4D4 /* CoreGraphics.framework */; };
@@ -17,10 +18,12 @@
 		67B8271A16290AA30013E4D4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271916290AA30013E4D4 /* Default@2x.png */; };
 		67B8271C16290AA30013E4D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271B16290AA30013E4D4 /* Default-568h@2x.png */; };
 		67B8271F16290AA30013E4D4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271D16290AA30013E4D4 /* MainStoryboard.storyboard */; };
-		67B8272216290AA30013E4D4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B8272116290AA30013E4D4 /* ViewController.m */; };
+		67B8272216290AA30013E4D4 /* ShareMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B8272116290AA30013E4D4 /* ShareMusicViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		671623EC1629182000DE00AB /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		671623ED1629182000DE00AB /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		67B8270116290AA30013E4D4 /* NowListeningTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowListeningTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		67B8270516290AA30013E4D4 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		67B8270716290AA30013E4D4 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -35,8 +38,8 @@
 		67B8271916290AA30013E4D4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		67B8271B16290AA30013E4D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		67B8271E16290AA30013E4D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
-		67B8272016290AA30013E4D4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		67B8272116290AA30013E4D4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		67B8272016290AA30013E4D4 /* ShareMusicViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShareMusicViewController.h; sourceTree = "<group>"; };
+		67B8272116290AA30013E4D4 /* ShareMusicViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShareMusicViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,8 +89,10 @@
 				67B8271416290AA30013E4D4 /* AppDelegate.h */,
 				67B8271516290AA30013E4D4 /* AppDelegate.m */,
 				67B8271D16290AA30013E4D4 /* MainStoryboard.storyboard */,
-				67B8272016290AA30013E4D4 /* ViewController.h */,
-				67B8272116290AA30013E4D4 /* ViewController.m */,
+				67B8272016290AA30013E4D4 /* ShareMusicViewController.h */,
+				67B8272116290AA30013E4D4 /* ShareMusicViewController.m */,
+				671623EC1629182000DE00AB /* SettingsViewController.h */,
+				671623ED1629182000DE00AB /* SettingsViewController.m */,
 				67B8270C16290AA30013E4D4 /* Supporting Files */,
 			);
 			path = NowListeningTo;
@@ -175,7 +180,8 @@
 			files = (
 				67B8271216290AA30013E4D4 /* main.m in Sources */,
 				67B8271616290AA30013E4D4 /* AppDelegate.m in Sources */,
-				67B8272216290AA30013E4D4 /* ViewController.m in Sources */,
+				67B8272216290AA30013E4D4 /* ShareMusicViewController.m in Sources */,
+				671623EE1629182000DE00AB /* SettingsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -291,6 +297,7 @@
 				67B8272716290AA30013E4D4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
