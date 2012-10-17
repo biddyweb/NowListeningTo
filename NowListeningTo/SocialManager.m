@@ -8,6 +8,8 @@
 
 #import "SocialManager.h"
 #import "MusicHelper.h"
+#import "AppDelegate.h"
+#import <FacebookSDK/FacebookSDK.h>
 
 @implementation SocialManager
 @synthesize accountStore;
@@ -56,43 +58,40 @@
 }
 
 -(void)shareSongWithFacebookAccount: (Song *)aSong{
-    NSDictionary *options = @{ACFacebookAppIdKey : @"359882274105102", ACFacebookAudienceKey : ACFacebookAudienceEveryone, ACFacebookPermissionsKey: @[@"publish_stream"]};
-    
-    ACAccountType *facebookAccountType = [self.accountStore accountTypeWithAccountTypeIdentifier:ACAccountTypeIdentifierFacebook];
-    
-    [self.accountStore requestAccessToAccountsWithType:facebookAccountType
-                        options:options
-                        completion:^(BOOL granted, NSError *error) {
-                        
-                            if (granted){
-                                //  Success
-                                NSArray *accounts = [self.accountStore accountsWithAccountType:facebookAccountType];
-                                
-                                //  On facebook there's only one account
-                                ACAccount *anAccount = [accounts lastObject];
-                                
-                                NSString *songString = [MusicHelper songStringWithSong:aSong];
-                                
-                                NSDictionary *parameters = @{@"message": songString};
-                                NSURL *feedURL = [NSURL URLWithString:@"https://graph.facebook.com/me/feed"];
-                                
-                                SLRequest *request = [SLRequest requestForServiceType:SLServiceTypeFacebook
-                                                                        requestMethod:SLRequestMethodPOST
-                                                                                  URL:feedURL
-                                                                           parameters:parameters];
-                                request.account = anAccount;
-                                [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
-                                    //  Handle errors
-                                    NSLog(@"#DEBUG ERROR: %@", [error debugDescription]);                                    
-                                }];
-                                
-                            }else{
-                                //  Fail
-                                if (error){
-                                    NSLog(@"#DEBUG ERROR: %@", [error debugDescription]);
-                                }
-                            }
-    }];
+    if (FBSession.activeSession.isOpen){
+        
+        NSMutableDictionary *paramsDict = [@{ @"name" : @"bla", @"caption" : @"Share music usign NowListeningTo" } mutableCopy];
+        
+        [FBRequestConnection startWithGraphPath:@"me/feed"
+                                     parameters:paramsDict
+                                     HTTPMethod:@"POST"
+                              completionHandler:^(FBRequestConnection *connection,
+                                                  id result,
+                                                  NSError *error) {
+             
+                                  NSString *alertText;
+
+                                  if (error) {
+                                      alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
+                                      
+                                  } else {
+                                      alertText = [NSString stringWithFormat:@"Posted action, id: %@",                              [result objectForKey:@"id"]];
+                                  }
+
+                                  // Show the result in an alert
+
+                                  [[[UIAlertView alloc] initWithTitle:@"Result"
+                                                              message:alertText
+                                                             delegate:nil
+                                                    cancelButtonTitle:@"OK!"
+                                                    otherButtonTitles:nil]
+                                   show];
+         }];
+        
+    }else{
+        AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
+        [appDelegate openSessionWithAllowLoginUI:YES];
+    }
 }
 
 #pragma mark - Public
