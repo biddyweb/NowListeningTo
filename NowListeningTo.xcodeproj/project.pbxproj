@@ -54,7 +54,6 @@
 		67E0937F1629FC63007BD447 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		67E093821629FCFD007BD447 /* SocialManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SocialManager.h; sourceTree = "<group>"; };
 		67E093831629FCFD007BD447 /* SocialManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SocialManager.m; sourceTree = "<group>"; };
-		67E093891629FD52007BD447 /* SynthesizeSingleton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SynthesizeSingleton.h; sourceTree = "<group>"; };
 		67E0938A1629FE4F007BD447 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -125,7 +124,6 @@
 		67B8270B16290AA30013E4D4 /* NowListeningTo */ = {
 			isa = PBXGroup;
 			children = (
-				67E093891629FD52007BD447 /* SynthesizeSingleton.h */,
 				67E093821629FCFD007BD447 /* SocialManager.h */,
 				67E093831629FCFD007BD447 /* SocialManager.m */,
 				671623EF16291BB700DE00AB /* MusicHelper.h */,

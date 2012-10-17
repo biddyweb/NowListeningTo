@@ -10,7 +10,6 @@
 #import <Accounts/Accounts.h>
 #import <Social/Social.h>
 #import "Song.h"
-#import "SynthesizeSingleton.h"
 
 typedef enum {
     SMAccountTypeFacebook,
@@ -25,7 +24,6 @@ typedef enum {
 @property (retain) ACAccountStore *accountStore;
 
 -(void)shareSong:(Song *)aSong withAccountType:(SMAccountType)anAccountType;
-
-SYNTHESIZE_SINGLETON_INTERFACE_FOR_CLASS(SocialManager)
++(id)sharedInstance;
 
 @end

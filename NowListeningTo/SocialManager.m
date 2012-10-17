@@ -118,6 +118,12 @@
     }
 }
 
-SYNTHESIZE_SINGLETON_IMPLEMENTATION_FOR_CLASS(SocialManager)
+//  Singleton method proposed in WWDC 2012
++ (id)sharedInstance {
+	static SocialManager *sharedInstance;
+	if (sharedInstance == nil)
+		sharedInstance = [SocialManager new];
+	return sharedInstance;
+}
 
 @end
