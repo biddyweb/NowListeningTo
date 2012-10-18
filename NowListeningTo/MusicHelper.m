@@ -30,7 +30,8 @@
     if (aSong){
         retVal = [NSString stringWithFormat:@"NLT: %@ by %@", aSong.title, aSong.artist];
     }else{
-        retVal = @"Test";
+        //  #TODO Remove this
+        retVal = @"No song being played :-(";
     }
     
     return retVal;

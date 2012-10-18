@@ -57,37 +57,65 @@
                                             }];
 }
 
+-(void)publishFacebookStory{
+        
+    NSMutableDictionary *paramsDict = [@{
+                                        @"message" : [MusicHelper songStringWithSong:[MusicHelper currentSong]],
+                                        @"link" : @"https://github.com/betzerra/NowListeningTo",
+                                        @"picture" : @"https://developers.facebook.com/attachment/iossdk_logo.png",
+                                        @"name" : @"NowListeningToApp",
+                                        @"caption" : @"",
+                                        @"description" : @"NowListeningTo is an open-source iOS app that let you share the music you're listening to into your favorite social networks"
+                                       } mutableCopy];
+    
+    [FBRequestConnection startWithGraphPath:@"me/feed"
+                                 parameters:paramsDict
+                                 HTTPMethod:@"POST"
+                          completionHandler:^(FBRequestConnection *connection,
+                                              id result,
+                                              NSError *error) {
+                              
+                              NSString *alertText;
+                              
+                              if (error) {
+                                  alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
+                                  
+                              } else {
+                                  alertText = [NSString stringWithFormat:@"Posted action, id: %@",                              [result objectForKey:@"id"]];
+                              }
+                              
+                              // Show the result in an alert
+                              
+                              [[[UIAlertView alloc] initWithTitle:@"Result"
+                                                          message:alertText
+                                                         delegate:nil
+                                                cancelButtonTitle:@"OK!"
+                                                otherButtonTitles:nil]
+                               show];
+                          }];
+}
+
 -(void)shareSongWithFacebookAccount: (Song *)aSong{
     if (FBSession.activeSession.isOpen){
-        
-        NSMutableDictionary *paramsDict = [@{ @"name" : @"bla", @"caption" : @"Share music usign NowListeningTo" } mutableCopy];
-        
-        [FBRequestConnection startWithGraphPath:@"me/feed"
-                                     parameters:paramsDict
-                                     HTTPMethod:@"POST"
-                              completionHandler:^(FBRequestConnection *connection,
-                                                  id result,
-                                                  NSError *error) {
-             
-                                  NSString *alertText;
-
-                                  if (error) {
-                                      alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
-                                      
-                                  } else {
-                                      alertText = [NSString stringWithFormat:@"Posted action, id: %@",                              [result objectForKey:@"id"]];
-                                  }
-
-                                  // Show the result in an alert
-
-                                  [[[UIAlertView alloc] initWithTitle:@"Result"
-                                                              message:alertText
-                                                             delegate:nil
-                                                    cancelButtonTitle:@"OK!"
-                                                    otherButtonTitles:nil]
-                                   show];
-         }];
-        
+        // Ask for publish_actions permissions in context
+        if ([FBSession.activeSession.permissions
+             indexOfObject:@"publish_actions"] == NSNotFound) {
+            
+            // No permissions found in session, ask for it
+            [FBSession.activeSession reauthorizeWithPublishPermissions: @[@"publish_actions"]
+                                                       defaultAudience:FBSessionDefaultAudienceEveryone
+                                                     completionHandler:^(FBSession *session, NSError *error) {
+                                                         
+                                                         if (!error) {
+                                                             // If permissions granted, publish the story
+                                                             [self publishFacebookStory];
+                                                         }
+                                                     }];
+            
+        } else {
+            // If permissions present, publish the story
+            [self publishFacebookStory];
+        }
     }else{
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
         [appDelegate openSessionWithAllowLoginUI:YES];
