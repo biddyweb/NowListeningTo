@@ -105,6 +105,19 @@ NSString *const FBSessionStateChangedNotification =
                                          }];
 }
 
+- (void)openSessionWithAllowLoginUI:(BOOL)allowLoginUI withCompletionBlock:(void (^)(BOOL success))completionCode{
+    BOOL success = [FBSession openActiveSessionWithReadPermissions:nil
+                                                      allowLoginUI:allowLoginUI
+                                                 completionHandler:^(FBSession *session,
+                                                                     FBSessionState state,
+                                                                     NSError *error) {
+                                                     [self sessionStateChanged:session
+                                                                         state:state
+                                                                         error:error];
+                                                 }];
+    completionCode(success);
+}
+
 /*
  * If we have a valid session at the time of openURL call, we handle
  * Facebook transitions by passing the url argument to handleOpenURL

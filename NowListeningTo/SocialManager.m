@@ -64,7 +64,7 @@
                                         @"link" : @"https://github.com/betzerra/NowListeningTo",
                                         @"picture" : @"https://developers.facebook.com/attachment/iossdk_logo.png",
                                         @"name" : @"NowListeningToApp",
-                                        @"caption" : @"",
+                                        @"caption" : @"By @betzerra",
                                         @"description" : @"NowListeningTo is an open-source iOS app that let you share the music you're listening to into your favorite social networks"
                                        } mutableCopy];
     
@@ -118,7 +118,15 @@
         }
     }else{
         AppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
-        [appDelegate openSessionWithAllowLoginUI:YES];
+        [appDelegate openSessionWithAllowLoginUI:YES withCompletionBlock:^(BOOL success) {
+
+            if (success){
+                [self publishFacebookStory];
+            }else{
+                NSLog(@"#DEBUG Error on openSessionWithAllowLoginUI");
+            }
+            
+        }];
     }
 }
 

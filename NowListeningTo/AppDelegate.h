@@ -16,5 +16,6 @@ extern NSString *const FBSessionStateChangedNotification;
 @property (strong, nonatomic) UIWindow *window;
 
 - (BOOL)openSessionWithAllowLoginUI:(BOOL)allowLoginUI;
+- (void)openSessionWithAllowLoginUI:(BOOL)allowLoginUI withCompletionBlock:(void (^)(BOOL success))completionCode;
 
 @end
