@@ -42,9 +42,9 @@
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S5j-FB-O3c">
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="4qq-ip-cnQ"/>
-                                    <barButtonItem title="Settings" style="plain" id="DiZ-1U-9Vw">
+                                    <barButtonItem title="Log" style="plain" id="DiZ-1U-9Vw">
                                         <connections>
-                                            <segue destination="cfF-Ai-0Nf" kind="push" id="WdY-9K-rIJ"/>
+                                            <segue destination="t7j-I7-V18" kind="modal" id="TjQ-WK-Luc"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="6sr-hT-FbU"/>
@@ -86,6 +86,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="NowListeningTo" id="BbC-vP-4IL">
+                        <barButtonItem key="leftBarButtonItem" image="gear_item.png" style="plain" id="bLq-kb-w7u">
+                            <connections>
+                                <segue destination="cfF-Ai-0Nf" kind="push" id="5uB-o7-cVy"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="91w-TU-uWL">
                             <connections>
                                 <action selector="refreshButtonTapped:" destination="2" id="SaM-Jh-fPu"/>
@@ -117,6 +122,39 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YEt-9p-jiT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-434" y="-609"/>
+        </scene>
+        <!--Log View Controller-->
+        <scene sceneID="NTq-cq-Yfg">
+            <objects>
+                <viewController id="t7j-I7-V18" customClass="LogViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Kiu-Of-wDn">
+                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jh2-Qz-Lps">
+                                <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <items>
+                                    <navigationItem title="Log" id="368-rr-bnE">
+                                        <barButtonItem key="rightBarButtonItem" title="Done" id="VJU-5J-SqI">
+                                            <connections>
+                                                <action selector="doneButtonTapped:" destination="t7j-I7-V18" id="7lZ-b4-i6i"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jh2-Qz-Lps" firstAttribute="leading" secondItem="Kiu-Of-wDn" secondAttribute="leading" type="default" id="HeW-nQ-9JF"/>
+                            <constraint firstItem="jh2-Qz-Lps" firstAttribute="trailing" secondItem="Kiu-Of-wDn" secondAttribute="trailing" type="default" id="dJC-qU-HgD"/>
+                            <constraint firstItem="jh2-Qz-Lps" firstAttribute="top" secondItem="Kiu-Of-wDn" secondAttribute="top" type="default" id="xBR-3d-ic5"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QUT-cz-wLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="537" y="-1186"/>
         </scene>
         <!--Settings View Controller - Settings-->
         <scene sceneID="cvC-DL-Y3b">
@@ -233,7 +271,16 @@
             <point key="canvasLocation" x="545" y="-609"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="gear_item.png" width="20" height="20"/>
+    </resources>
     <classes>
+        <class className="LogViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/LogViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="doneButtonTapped:"/>
+            </relationships>
+        </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
         </class>
@@ -249,6 +296,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/ShareMusicViewController.h"/>
             <relationships>
                 <relationship kind="action" name="refreshButtonTapped:"/>
+                <relationship kind="action" name="shareButtonTapped:"/>
                 <relationship kind="outlet" name="songLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="songLabelContainer" candidateClass="UIView"/>
             </relationships>
