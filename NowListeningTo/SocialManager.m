@@ -135,15 +135,11 @@
 -(id)init{
     self = [super init];
     if (self){
-        self.accountStore = [[[ACAccountStore alloc] init] autorelease];
+        self.accountStore = [[ACAccountStore alloc] init];
     }
     return self;
 }
 
--(void)dealloc{
-    [accountStore release];
-    [super dealloc];
-}
 
 -(void)shareSong:(Song *)aSong withAccountType:(SMAccountType)anAccountType{
     

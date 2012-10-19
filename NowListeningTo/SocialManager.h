@@ -21,7 +21,7 @@ typedef enum {
     ACAccountStore *accountStore;
 }
 
-@property (retain) ACAccountStore *accountStore;
+@property (strong) ACAccountStore *accountStore;
 
 -(void)shareSong:(Song *)aSong withAccountType:(SMAccountType)anAccountType;
 +(id)sharedInstance;

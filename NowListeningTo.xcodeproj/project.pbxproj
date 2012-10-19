@@ -26,7 +26,7 @@
 		67B8272216290AA30013E4D4 /* ShareMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67B8272116290AA30013E4D4 /* ShareMusicViewController.m */; };
 		67BA7477162F57B000239803 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 67BA7476162F57B000239803 /* FacebookSDKResources.bundle */; };
 		67E093801629FC63007BD447 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0937F1629FC63007BD447 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		67E093841629FCFD007BD447 /* SocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E093831629FCFD007BD447 /* SocialManager.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		67E093841629FCFD007BD447 /* SocialManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67E093831629FCFD007BD447 /* SocialManager.m */; };
 		67E0938B1629FE4F007BD447 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0938A1629FE4F007BD447 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -318,6 +318,7 @@
 		67B8272616290AA30013E4D4 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../FacebookSDK\"",
@@ -335,6 +336,7 @@
 		67B8272716290AA30013E4D4 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../../FacebookSDK\"",
