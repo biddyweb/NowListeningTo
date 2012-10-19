@@ -14,5 +14,8 @@
     __weak IBOutlet UISwitch *facebookSwitch;
     __weak IBOutlet UISwitch *nltSwitch;
 }
+- (IBAction)twitterSwitchValueChanged:(id)sender;
+- (IBAction)facebookSwitchValueChanged:(id)sender;
+- (IBAction)nltSwitchValueChanged:(id)sender;
 
 @end

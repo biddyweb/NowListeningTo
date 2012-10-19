@@ -86,7 +86,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="NowListeningTo" id="BbC-vP-4IL">
-                        <barButtonItem key="leftBarButtonItem" image="gear_item.png" style="plain" id="bLq-kb-w7u">
+                        <barButtonItem key="leftBarButtonItem" image="gear_item.png" id="bLq-kb-w7u">
                             <connections>
                                 <segue destination="cfF-Ai-0Nf" kind="push" id="5uB-o7-cVy"/>
                             </connections>
@@ -131,6 +131,31 @@
                         <rect key="frame" x="0.0" y="20" width="320" height="460"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="Vkm-jm-dxr">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" indentationWidth="10" reuseIdentifier="LogCell" textLabel="sZm-lb-Kvu" style="IBUITableViewCellStyleDefault" id="cvC-6f-4z5">
+                                        <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZm-lb-Kvu">
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <color key="highlightedColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="t7j-I7-V18" id="skF-KV-ZVZ"/>
+                                    <outlet property="delegate" destination="t7j-I7-V18" id="wjQ-dV-Db8"/>
+                                </connections>
+                            </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jh2-Qz-Lps">
                                 <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <items>
@@ -147,10 +172,17 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="jh2-Qz-Lps" firstAttribute="leading" secondItem="Kiu-Of-wDn" secondAttribute="leading" type="default" id="HeW-nQ-9JF"/>
+                            <constraint firstItem="Vkm-jm-dxr" firstAttribute="bottom" secondItem="Kiu-Of-wDn" secondAttribute="bottom" type="default" id="Oy6-Lx-0Iv"/>
                             <constraint firstItem="jh2-Qz-Lps" firstAttribute="trailing" secondItem="Kiu-Of-wDn" secondAttribute="trailing" type="default" id="dJC-qU-HgD"/>
+                            <constraint firstItem="Vkm-jm-dxr" firstAttribute="top" secondItem="jh2-Qz-Lps" secondAttribute="bottom" type="default" id="n9s-Ob-SH1"/>
+                            <constraint firstItem="Vkm-jm-dxr" firstAttribute="leading" secondItem="Kiu-Of-wDn" secondAttribute="leading" type="default" id="wQh-Mz-82n"/>
                             <constraint firstItem="jh2-Qz-Lps" firstAttribute="top" secondItem="Kiu-Of-wDn" secondAttribute="top" type="default" id="xBR-3d-ic5"/>
+                            <constraint firstItem="Vkm-jm-dxr" firstAttribute="trailing" secondItem="Kiu-Of-wDn" secondAttribute="trailing" type="default" id="xx3-n8-3Hw"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableVIew" destination="Vkm-jm-dxr" id="hwG-Ep-J0W"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QUT-cz-wLy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -184,6 +216,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="61k-Ob-hJY">
                                                     <color key="onTintColor" red="0.34509803921568627" green="0.6588235294117647" blue="0.88627450980392153" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="twitterSwitchValueChanged:" destination="cfF-Ai-0Nf" eventType="valueChanged" id="DxE-dY-gPP"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -212,6 +247,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5zo-C1-5hJ">
                                                     <color key="onTintColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <connections>
+                                                        <action selector="facebookSwitchValueChanged:" destination="cfF-Ai-0Nf" eventType="valueChanged" id="E5O-DL-BEZ"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -240,6 +278,9 @@
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pQe-Ez-nlg">
                                                     <color key="onTintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <connections>
+                                                        <action selector="nltSwitchValueChanged:" destination="cfF-Ai-0Nf" eventType="valueChanged" id="tiX-IY-6db"/>
+                                                    </connections>
                                                 </switch>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -279,6 +320,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/LogViewController.h"/>
             <relationships>
                 <relationship kind="action" name="doneButtonTapped:"/>
+                <relationship kind="outlet" name="tableVIew" candidateClass="UITableView"/>
             </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
@@ -287,8 +329,11 @@
         <class className="SettingsViewController" superclassName="UITableViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
+                <relationship kind="action" name="facebookSwitchValueChanged:"/>
+                <relationship kind="action" name="twitterSwitchValueChanged:"/>
                 <relationship kind="outlet" name="facebookSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="nltSwitch" candidateClass="UISwitch"/>
+                <relationship kind="outlet" name="nltSwitchValueChanged" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="twitterSwitch" candidateClass="UISwitch"/>
             </relationships>
         </class>

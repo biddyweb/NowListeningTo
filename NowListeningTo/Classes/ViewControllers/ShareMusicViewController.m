@@ -68,6 +68,6 @@
 }
 
 - (IBAction)shareButtonTapped:(id)sender {
-    [[SocialManager sharedInstance] shareSong:[MusicHelper currentSong] withAccountType:SMAccountTypeAll];
+    [[SocialManager sharedInstance] shareSong:[MusicHelper currentSong]];
 }
 @end

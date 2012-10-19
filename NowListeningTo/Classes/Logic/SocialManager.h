@@ -11,19 +11,23 @@
 #import <Social/Social.h>
 #import "Song.h"
 
-typedef enum {
-    SMAccountTypeFacebook,
-    SMAccountTypeTwitter,
-    SMAccountTypeAll
-} SMAccountType;
+#define kAccountTwitter @"kAccountTwitter"
+#define kAccountFacebook @"kAccountFacebook"
+#define kAccountListeningTo @"kAccountListeningTo"
 
 @interface SocialManager : NSObject{
     ACAccountStore *accountStore;
+    NSMutableDictionary *accountsSettings;
 }
 
 @property (strong) ACAccountStore *accountStore;
+@property (readonly) NSMutableDictionary *accountsSettings;
 
--(void)shareSong:(Song *)aSong withAccountType:(SMAccountType)anAccountType;
-+(id)sharedInstance;
+-(BOOL)isAccountEnabledForShare:(NSString *)anAccountId;
+-(void)setAccount:(NSString *)anAccountId enabled:(BOOL)isEnabled;
+
+-(void)shareSong:(Song *)aSong;
+-(void)saveToDisk;
++(SocialManager *)sharedInstance;
 
 @end

@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LogViewController : UIViewController
+@interface LogViewController : UIViewController <UITableViewDataSource, UITableViewDelegate>{
+    __weak IBOutlet UITableView *tableVIew;
+}
+
 - (IBAction)doneButtonTapped:(id)sender;
 
 @end

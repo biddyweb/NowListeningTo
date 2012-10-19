@@ -18,6 +18,7 @@
 		67671BB61631A49800B0A7EB /* ShareMusicViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67671BB01631A49800B0A7EB /* ShareMusicViewController.m */; };
 		67671BBB1631A4A300B0A7EB /* gear_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 67671BB91631A4A300B0A7EB /* gear_item.png */; };
 		67671BBC1631A4A300B0A7EB /* gear_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67671BBA1631A4A300B0A7EB /* gear_item@2x.png */; };
+		67671BC31631A8B200B0A7EB /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67671BC21631A8B200B0A7EB /* LogManager.m */; };
 		67B7162C162F56FF00E4030A /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B7162B162F56FF00E4030A /* FacebookSDK.framework */; };
 		67B71630162F575A00E4030A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B7162F162F575A00E4030A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		67B8270616290AA30013E4D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270516290AA30013E4D4 /* UIKit.framework */; };
@@ -53,6 +54,8 @@
 		67671BB01631A49800B0A7EB /* ShareMusicViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareMusicViewController.m; sourceTree = "<group>"; };
 		67671BB91631A4A300B0A7EB /* gear_item.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gear_item.png; sourceTree = "<group>"; };
 		67671BBA1631A4A300B0A7EB /* gear_item@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear_item@2x.png"; sourceTree = "<group>"; };
+		67671BC11631A8B200B0A7EB /* LogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogManager.h; sourceTree = "<group>"; };
+		67671BC21631A8B200B0A7EB /* LogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogManager.m; sourceTree = "<group>"; };
 		67B7162B162F56FF00E4030A /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = ../../FacebookSDK/FacebookSDK.framework; sourceTree = "<group>"; };
 		67B7162F162F575A00E4030A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		67B8270116290AA30013E4D4 /* NowListeningTo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NowListeningTo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -119,6 +122,8 @@
 				67671BA71631A49800B0A7EB /* MusicHelper.m */,
 				67671BA81631A49800B0A7EB /* SocialManager.h */,
 				67671BA91631A49800B0A7EB /* SocialManager.m */,
+				67671BC11631A8B200B0A7EB /* LogManager.h */,
+				67671BC21631A8B200B0A7EB /* LogManager.m */,
 			);
 			path = Logic;
 			sourceTree = "<group>";
@@ -294,6 +299,7 @@
 				67671BB41631A49800B0A7EB /* LogViewController.m in Sources */,
 				67671BB51631A49800B0A7EB /* SettingsViewController.m in Sources */,
 				67671BB61631A49800B0A7EB /* ShareMusicViewController.m in Sources */,
+				67671BC31631A8B200B0A7EB /* LogManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

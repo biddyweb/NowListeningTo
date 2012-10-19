@@ -10,9 +10,12 @@
 #import "MusicHelper.h"
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
+#import "LogManager.h"
+
+#define kAccountsDictionary @"kAccountsDictionary"
 
 @implementation SocialManager
-@synthesize accountStore;
+@synthesize accountStore, accountsSettings;
 
 #pragma mark - Private
 
@@ -43,15 +46,27 @@
                                                     [request performRequestWithHandler:^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error) {
                                                         //  Handle errors
                                                         
+                                                        NSString *logString = nil;
+                                                        
+                                                        NSString *response = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+                                                        
                                                         if (error){
-                                                            NSLog(@"#DEBUG ERROR: %@", [error debugDescription]);
+                                                            logString = [NSString stringWithFormat:@"ERROR on Twitter: %@", [error debugDescription]];
+
+                                                        }else{
+                                                            logString = @"Succesfully posted on Twitter";
                                                         }
+                                                        
+                                                        [[LogManager sharedInstance] addLog:logString];
+                                                        NSLog(@"#DEBUG %@", logString);
                                                     }];
                                                     
                                                 }else{
                                                     //  Fail
                                                     if (error){
-                                                        NSLog(@"#DEBUG ERROR: %@", [error debugDescription]);
+                                                        NSString *anErrorString = [NSString stringWithFormat:@"ERROR on Twitter: %@", [error debugDescription]];
+                                                        [[LogManager sharedInstance] addLog:anErrorString];
+                                                        NSLog(@"#DEBUG %@", anErrorString);
                                                     }
                                                 }
                                             }];
@@ -75,23 +90,18 @@
                                               id result,
                                               NSError *error) {
                               
-                              NSString *alertText;
+                              NSString *logText = nil;
                               
                               if (error) {
-                                  alertText = [NSString stringWithFormat:@"error: domain = %@, code = %d", error.domain, error.code];
+                                  logText = [NSString stringWithFormat:@"ERROR on Facebook: domain = %@, code = %d", error.domain, error.code];
                                   
                               } else {
-                                  alertText = [NSString stringWithFormat:@"Posted action, id: %@",                              [result objectForKey:@"id"]];
+                                  logText = [NSString stringWithFormat:@"Succesfully posted action on Facebook (id: %@)",                              [result objectForKey:@"id"]];
                               }
                               
-                              // Show the result in an alert
-                              
-                              [[[UIAlertView alloc] initWithTitle:@"Result"
-                                                          message:alertText
-                                                         delegate:nil
-                                                cancelButtonTitle:@"OK!"
-                                                otherButtonTitles:nil]
-                               show];
+                              [[LogManager sharedInstance] addLog:logText];
+                              NSLog(@"#DEBUG %@", logText);
+
                           }];
 }
 
@@ -123,7 +133,9 @@
             if (success){
                 [self publishFacebookStory];
             }else{
-                NSLog(@"#DEBUG Error on openSessionWithAllowLoginUI");
+                NSString *logText = @"ERROR on Facebook openSessionWithAllowLoginUI";
+                [[LogManager sharedInstance] addLog:logText];
+                NSLog(@"#DEBUG %@", logText);
             }
             
         }];
@@ -136,21 +148,55 @@
     self = [super init];
     if (self){
         self.accountStore = [[ACAccountStore alloc] init];
+        accountsSettings = [[NSMutableDictionary alloc] init];
+        
+        NSDictionary *socialAccounts = [[NSUserDefaults standardUserDefaults] objectForKey:kAccountsDictionary];
+        if (socialAccounts){
+            [accountsSettings addEntriesFromDictionary:socialAccounts];
+        }
     }
     return self;
 }
 
+-(void)saveToDisk{
+    [[NSUserDefaults standardUserDefaults] setObject:accountsSettings forKey:kAccountsDictionary];
+}
 
--(void)shareSong:(Song *)aSong withAccountType:(SMAccountType)anAccountType{
+-(void)shareSong:(Song *)aSong{
     
-    if (anAccountType == SMAccountTypeAll){
-        [self shareSongWithFacebookAccount:aSong];
+    if ([self isAccountEnabledForShare:kAccountTwitter]){
         [self shareSongWithTwitterAccount:aSong];
+    }
+    
+    if ([self isAccountEnabledForShare:kAccountFacebook]){
+        [self shareSongWithFacebookAccount:aSong];
+    }
+    
+    if ([self isAccountEnabledForShare:kAccountListeningTo]){
+        
     }
 }
 
+-(BOOL)isAccountEnabledForShare:(NSString *)anAccountId{
+    BOOL retVal = NO;
+    
+    NSNumber *anAccountSetting = [accountsSettings objectForKey:anAccountId];
+    if (anAccountSetting == nil){
+        anAccountSetting = @YES;
+        [self setAccount:anAccountId enabled:YES];
+    }
+    
+    retVal = [anAccountSetting boolValue];
+    return retVal;
+}
+
+-(void)setAccount:(NSString *)anAccountId enabled:(BOOL)isEnabled{
+    NSNumber *aValue = [NSNumber numberWithBool:isEnabled];
+    [accountsSettings setObject:aValue forKey:anAccountId];
+}
+
 //  Singleton method proposed in WWDC 2012
-+ (id)sharedInstance {
++ (SocialManager *)sharedInstance {
 	static SocialManager *sharedInstance;
 	if (sharedInstance == nil)
 		sharedInstance = [SocialManager new];

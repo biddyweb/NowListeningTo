@@ -7,10 +7,7 @@
 //
 
 #import "SettingsViewController.h"
-
-@interface SettingsViewController ()
-
-@end
+#import "SocialManager.h"
 
 @implementation SettingsViewController
 
@@ -26,6 +23,14 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    BOOL isTwitterEnabled = [[SocialManager sharedInstance] isAccountEnabledForShare:kAccountTwitter];
+    [twitterSwitch setOn:isTwitterEnabled];
+    
+    BOOL isFacebookEnabled = [[SocialManager sharedInstance] isAccountEnabledForShare:kAccountFacebook];
+    [facebookSwitch setOn:isFacebookEnabled];
+    
+    BOOL isListeningToEnabled = [[SocialManager sharedInstance] isAccountEnabledForShare:kAccountListeningTo];
+    [nltSwitch setOn:isListeningToEnabled];
 }
 
 - (void)didReceiveMemoryWarning
@@ -47,4 +52,23 @@
      */
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)path{
+    // Determine if row is selectable based on the NSIndexPath.
+    return nil;
+}
+
+- (IBAction)twitterSwitchValueChanged:(id)sender {
+    BOOL newValue = [(UISwitch *)sender isOn];
+    [[SocialManager sharedInstance] setAccount:kAccountTwitter enabled:newValue];
+}
+
+- (IBAction)facebookSwitchValueChanged:(id)sender {
+    BOOL newValue = [(UISwitch *)sender isOn];
+    [[SocialManager sharedInstance] setAccount:kAccountFacebook enabled:newValue];
+}
+
+- (IBAction)nltSwitchValueChanged:(id)sender {
+    BOOL newValue = [(UISwitch *)sender isOn];
+    [[SocialManager sharedInstance] setAccount:kAccountListeningTo enabled:newValue];
+}
 @end
