@@ -106,16 +106,22 @@ NSString *const FBSessionStateChangedNotification =
 }
 
 - (void)openSessionWithAllowLoginUI:(BOOL)allowLoginUI withCompletionBlock:(void (^)(BOOL success))completionCode{
-    BOOL success = [FBSession openActiveSessionWithReadPermissions:nil
-                                                      allowLoginUI:allowLoginUI
-                                                 completionHandler:^(FBSession *session,
-                                                                     FBSessionState state,
-                                                                     NSError *error) {
-                                                     [self sessionStateChanged:session
-                                                                         state:state
-                                                                         error:error];
-                                                 }];
-    completionCode(success);
+    [FBSession openActiveSessionWithReadPermissions:nil
+                                       allowLoginUI:allowLoginUI
+                                  completionHandler:^(FBSession *session,
+                                                      FBSessionState state,
+                                                      NSError *error) {
+                                      
+                                      [self sessionStateChanged:session
+                                                          state:state
+                                                          error:error];
+                                      
+                                      if (error){
+                                          completionCode(NO);
+                                      }else{
+                                          completionCode(YES);                                          
+                                      }
+                                  }];
 }
 
 /*
