@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1926"/>
     </dependencies>
     <scenes>
-        <!--Share Music View Controller - NowListeningTo-->
+        <!--Share Music View Controller - NLTApp-->
         <scene sceneID="5">
             <objects>
                 <viewController id="2" customClass="ShareMusicViewController" sceneMemberID="viewController">
@@ -12,7 +12,7 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You're listening to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGO-HM-4p1">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="You're now listening to" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jGO-HM-4p1">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="37" id="RQU-DJ-8xs"/>
                                 </constraints>
@@ -85,7 +85,7 @@
                             <constraint firstItem="r2L-yc-KHb" firstAttribute="centerX" secondItem="TLs-Ql-Jgg" secondAttribute="centerX" type="default" id="qce-Oa-4sC"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="NowListeningTo" id="BbC-vP-4IL">
+                    <navigationItem key="navigationItem" title="NLTApp" id="BbC-vP-4IL">
                         <barButtonItem key="leftBarButtonItem" image="gear_item.png" id="bLq-kb-w7u">
                             <connections>
                                 <segue destination="cfF-Ai-0Nf" kind="push" id="5uB-o7-cVy"/>
@@ -330,10 +330,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SettingsViewController.h"/>
             <relationships>
                 <relationship kind="action" name="facebookSwitchValueChanged:"/>
+                <relationship kind="action" name="nltSwitchValueChanged:"/>
                 <relationship kind="action" name="twitterSwitchValueChanged:"/>
                 <relationship kind="outlet" name="facebookSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="nltSwitch" candidateClass="UISwitch"/>
-                <relationship kind="outlet" name="nltSwitchValueChanged" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="twitterSwitch" candidateClass="UISwitch"/>
             </relationships>
         </class>

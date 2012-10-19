@@ -28,7 +28,7 @@
     NSString *retVal = nil;
 
     if (aSong){
-        retVal = [NSString stringWithFormat:@"NLT: %@ by %@", aSong.title, aSong.artist];
+        retVal = [NSString stringWithFormat:@"NLT: %@ by %@ #NLTApp", aSong.title, aSong.artist];
     }else{
         //  #TODO Remove this
         retVal = @"No song being played :-(";
@@ -36,5 +36,6 @@
     
     return retVal;
 }
+
 
 @end
