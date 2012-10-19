@@ -45,17 +45,47 @@
     songLabel.text = songText;
 }
 
+#pragma mark - Notifications
+
+-(void)showProgress:(NSNotification *)aNotification{
+    progressHUD.mode = MBProgressHUDModeAnnularDeterminate;
+    progressHUD.progress = [SocialManager sharedInstance].progressShareTasks;
+    progressHUD.dimBackground = YES;
+    [progressHUD show:YES];
+    [self.view addSubview:progressHUD];
+}
+
+-(void)updateProgress:(NSNotification *)aNotification{
+    progressHUD.progress = [SocialManager sharedInstance].progressShareTasks;
+    if ([SocialManager sharedInstance].progressShareTasks > 0.99){
+        [progressHUD hide:YES afterDelay:0.5];
+    }
+}
+
 #pragma mark - Public
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+    progressHUD = [[MBProgressHUD alloc] initWithView:self.view];
+    progressHUD.delegate = self;
+    
     songLabelContainer.layer.cornerRadius = 10;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgress:) name:@"kShareSongBegin" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:@"kShareSongStepFinished" object:nil];
+    
     [self refreshSong];
 }
 
 - (void)viewDidLayoutSubviews{
     [super viewDidLayoutSubviews];
     [self autoResizeUILabelFont:songLabel];    
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)didReceiveMemoryWarning{
@@ -69,5 +99,12 @@
 
 - (IBAction)shareButtonTapped:(id)sender {
     [[SocialManager sharedInstance] shareSong:[MusicHelper currentSong]];
+}
+
+#pragma mark - MBProgressHUDDelegate
+
+- (void)hudWasHidden:(MBProgressHUD *)hud {
+	// Remove HUD from screen when the HUD was hidded
+	[progressHUD removeFromSuperview];
 }
 @end

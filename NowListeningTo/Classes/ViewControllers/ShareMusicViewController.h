@@ -7,8 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MBProgressHUD.h"
 
-@interface ShareMusicViewController : UIViewController{
+@interface ShareMusicViewController : UIViewController <MBProgressHUDDelegate>{
+    MBProgressHUD *progressHUD;
+    
     __weak IBOutlet UILabel *songLabel;
     __weak IBOutlet UIView *songLabelContainer;
 }

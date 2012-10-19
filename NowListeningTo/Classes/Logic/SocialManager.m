@@ -15,7 +15,7 @@
 #define kAccountsDictionary @"kAccountsDictionary"
 
 @implementation SocialManager
-@synthesize accountStore, accountsSettings;
+@synthesize accountStore, accountsSettings, progressShareTasks;
 
 #pragma mark - Private
 
@@ -69,7 +69,11 @@
                                                         NSLog(@"#DEBUG %@", anErrorString);
                                                     }
                                                 }
-                                            }];
+                                                
+                                                finishedShareTasks++;
+                                                [[NSNotificationCenter defaultCenter] postNotificationName:@"kShareSongStepFinished" object:nil];
+                                            }
+     ];
 }
 
 -(void)publishFacebookStory{
@@ -101,6 +105,9 @@
                               
                               [[LogManager sharedInstance] addLog:logText];
                               NSLog(@"#DEBUG %@", logText);
+                              
+                              finishedShareTasks++;
+                              [[NSNotificationCenter defaultCenter] postNotificationName:@"kShareSongStepFinished" object:nil];
 
                           }];
 }
@@ -142,6 +149,18 @@
     }
 }
 
+#pragma mark - Properties
+
+-(float)progressShareTasks{
+    float retVal = 0;
+    
+    if (totalShareTasks > 0){
+        retVal = finishedShareTasks / totalShareTasks;
+    }
+    
+    return retVal;
+}
+
 #pragma mark - Public
 
 -(id)init{
@@ -163,18 +182,26 @@
 }
 
 -(void)shareSong:(Song *)aSong{
+    finishedShareTasks = 0;
+    totalShareTasks = 0;
     
     if ([self isAccountEnabledForShare:kAccountTwitter]){
         [self shareSongWithTwitterAccount:aSong];
+        
+        totalShareTasks ++;
     }
     
     if ([self isAccountEnabledForShare:kAccountFacebook]){
         [self shareSongWithFacebookAccount:aSong];
+        
+        totalShareTasks ++;
     }
     
     if ([self isAccountEnabledForShare:kAccountListeningTo]){
         
     }
+    
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kShareSongBegin" object:nil];
 }
 
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId{
