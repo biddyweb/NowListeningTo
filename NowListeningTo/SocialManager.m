@@ -62,7 +62,7 @@
     NSMutableDictionary *paramsDict = [@{
                                         @"message" : [MusicHelper songStringWithSong:[MusicHelper currentSong]],
                                         @"link" : @"https://github.com/betzerra/NowListeningTo",
-                                        @"picture" : @"https://developers.facebook.com/attachment/iossdk_logo.png",
+                                        @"picture" : @"http://asandbox.com.ar/nowlisteningto/icon_facebook.png",
                                         @"name" : @"NowListeningToApp",
                                         @"caption" : @"By @betzerra",
                                         @"description" : @"NowListeningTo is an open-source iOS app that let you share the music you're listening to into your favorite social networks"
