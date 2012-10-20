@@ -48,7 +48,7 @@
                                                         
                                                         NSString *logString = nil;
                                                         
-                                                        NSString *response = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
+//                                                        NSString *response = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                                                         
                                                         if (error){
                                                             logString = [NSString stringWithFormat:@"ERROR on Twitter: %@", [error debugDescription]];
