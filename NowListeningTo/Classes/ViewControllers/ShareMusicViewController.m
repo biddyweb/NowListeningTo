@@ -48,7 +48,8 @@
 #pragma mark - Notifications
 
 -(void)showProgress:(NSNotification *)aNotification{
-    progressHUD.mode = MBProgressHUDModeAnnularDeterminate;
+    progressHUD.mode = MBProgressHUDModeIndeterminate;
+    progressHUD.labelText = @"Loading";
     progressHUD.progress = [SocialManager sharedInstance].progressShareTasks;
     progressHUD.dimBackground = YES;
     [progressHUD show:YES];
@@ -58,7 +59,8 @@
 -(void)updateProgress:(NSNotification *)aNotification{
     progressHUD.progress = [SocialManager sharedInstance].progressShareTasks;
     if ([SocialManager sharedInstance].progressShareTasks > 0.99){
-        [progressHUD hide:YES afterDelay:0.5];
+        progressHUD.labelText = @"Done!";
+        [progressHUD hide:YES afterDelay:1.5];
     }
 }
 
