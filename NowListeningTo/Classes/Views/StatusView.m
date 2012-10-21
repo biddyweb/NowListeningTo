@@ -11,6 +11,7 @@
 #define STATUSVIEW_LEFTMARGIN 10
 #define STATUSVIEW_HEIGHT 25
 #define STATUSVIEW_OPACITY 0.75
+#define STATUSVIEW_DELAY 2
 
 @implementation StatusView
 
@@ -24,7 +25,7 @@
         titleLabel.text = announce;
         [messages removeObject:announce];
         
-        [self performSelector:@selector(updateStatusView) withObject:nil afterDelay:5];
+        [self performSelector:@selector(updateStatusView) withObject:nil afterDelay:STATUSVIEW_DELAY];
         
     }else{
         
@@ -59,7 +60,7 @@
                 self.frame = statusViewEndFrame;
                 self.alpha = 1;
             } completion:^(BOOL finished) {
-                [self performSelector:@selector(updateStatusView) withObject:nil afterDelay:5];
+                [self performSelector:@selector(updateStatusView) withObject:nil afterDelay:STATUSVIEW_DELAY];
             }];
         }
     });
