@@ -52,10 +52,11 @@
      */
 }
 
-- (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)path{
-    // Determine if row is selectable based on the NSIndexPath.
-    return nil;
-}
+//  #DEV Uncomment this code if you want to avoid selection on cells
+//- (NSIndexPath *)tableView:(UITableView *)tv willSelectRowAtIndexPath:(NSIndexPath *)path{
+//    // Determine if row is selectable based on the NSIndexPath.
+//    return nil;
+//}
 
 - (IBAction)twitterSwitchValueChanged:(id)sender {
     BOOL newValue = [(UISwitch *)sender isOn];

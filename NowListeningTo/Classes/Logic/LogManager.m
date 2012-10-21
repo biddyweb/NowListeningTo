@@ -11,6 +11,15 @@
 @implementation LogManager
 @synthesize logs;
 
+#pragma mark - Private
+
+-(void)announceWithTextMessage:(NSString *)aMessage{
+    NSDictionary *aDict = @{@"message" : aMessage};
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"kStatusAnnounce" object:nil userInfo:aDict];
+}
+
+#pragma mark - Public
+
 -(id)init{
     self = [super init];
     if (self){
@@ -21,6 +30,7 @@
 
 -(void)addLog:(NSString *)aLog{
     [logs addObject:aLog];
+    [self announceWithTextMessage:aLog];
 }
 
 +(LogManager *)sharedInstance{

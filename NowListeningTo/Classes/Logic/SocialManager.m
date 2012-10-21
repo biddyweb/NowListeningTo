@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import <FacebookSDK/FacebookSDK.h>
 #import "LogManager.h"
+#import "StatusView.h"
 
 #define kAccountsDictionary @"kAccountsDictionary"
 
@@ -198,7 +199,13 @@
     }
     
     if ([self isAccountEnabledForShare:kAccountListeningTo]){
+        //  #DEBUG
+        NSDateFormatter *aFormatter = [[NSDateFormatter alloc] init];
+        [aFormatter setDateFormat:@"s"];
+        NSString *aString = [aFormatter stringFromDate:[NSDate date]];
         
+        NSDictionary *aDict = @{@"message" : aString};
+        [[NSNotificationCenter defaultCenter] postNotificationName:kStatusViewAnnounce object:nil userInfo:aDict];
     }
     
     [[NSNotificationCenter defaultCenter] postNotificationName:@"kShareSongBegin" object:nil];
