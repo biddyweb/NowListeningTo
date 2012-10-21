@@ -16,9 +16,7 @@
 
 #pragma mark - Private
 
--(void)updateStatusView{
-    NSLog(@"#DEBUG Update");
-    
+-(void)updateStatusView{    
     if ([messages count] > 0){
 
         //  Update message
@@ -48,9 +46,6 @@
         if ([messages count] > 1){
 
         }else{
-            
-            NSLog(@"#DEBUG Show");
-            
             titleLabel.text = aMessage;
             
             //  Setup begin and end frames

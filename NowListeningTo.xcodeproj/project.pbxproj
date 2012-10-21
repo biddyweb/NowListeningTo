@@ -21,7 +21,6 @@
 		67671BBB1631A4A300B0A7EB /* gear_item.png in Resources */ = {isa = PBXBuildFile; fileRef = 67671BB91631A4A300B0A7EB /* gear_item.png */; };
 		67671BBC1631A4A300B0A7EB /* gear_item@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67671BBA1631A4A300B0A7EB /* gear_item@2x.png */; };
 		67671BC31631A8B200B0A7EB /* LogManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 67671BC21631A8B200B0A7EB /* LogManager.m */; };
-		67671BD21631CCAA00B0A7EB /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 67671BD11631CCAA00B0A7EB /* MBProgressHUD.m */; };
 		677A0ADB16337F38002358A6 /* StatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 677A0ADA16337F38002358A6 /* StatusView.m */; };
 		67B71630162F575A00E4030A /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B7162F162F575A00E4030A /* AdSupport.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		67B8270616290AA30013E4D4 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67B8270516290AA30013E4D4 /* UIKit.framework */; };
@@ -60,8 +59,6 @@
 		67671BBA1631A4A300B0A7EB /* gear_item@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "gear_item@2x.png"; sourceTree = "<group>"; };
 		67671BC11631A8B200B0A7EB /* LogManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogManager.h; sourceTree = "<group>"; };
 		67671BC21631A8B200B0A7EB /* LogManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogManager.m; sourceTree = "<group>"; };
-		67671BD01631CCAA00B0A7EB /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBProgressHUD.h; path = Libs/MBProgressHUD/MBProgressHUD.h; sourceTree = "<group>"; };
-		67671BD11631CCAA00B0A7EB /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBProgressHUD.m; path = Libs/MBProgressHUD/MBProgressHUD.m; sourceTree = "<group>"; };
 		677A0AD916337F38002358A6 /* StatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StatusView.h; path = Views/StatusView.h; sourceTree = "<group>"; };
 		677A0ADA16337F38002358A6 /* StatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StatusView.m; path = Views/StatusView.m; sourceTree = "<group>"; };
 		67B7162F162F575A00E4030A /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
@@ -168,18 +165,8 @@
 		67671BCF1631CC5F00B0A7EB /* Libs */ = {
 			isa = PBXGroup;
 			children = (
-				67671BD31631CCB500B0A7EB /* MBProgressHUD */,
 			);
 			name = Libs;
-			sourceTree = "<group>";
-		};
-		67671BD31631CCB500B0A7EB /* MBProgressHUD */ = {
-			isa = PBXGroup;
-			children = (
-				67671BD01631CCAA00B0A7EB /* MBProgressHUD.h */,
-				67671BD11631CCAA00B0A7EB /* MBProgressHUD.m */,
-			);
-			name = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		677A0AD716337EFB002358A6 /* Views */ = {
@@ -334,7 +321,6 @@
 				67671BB51631A49800B0A7EB /* SettingsViewController.m in Sources */,
 				67671BB61631A49800B0A7EB /* ShareMusicViewController.m in Sources */,
 				67671BC31631A8B200B0A7EB /* LogManager.m in Sources */,
-				67671BD21631CCAA00B0A7EB /* MBProgressHUD.m in Sources */,
 				677A0ADB16337F38002358A6 /* StatusView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

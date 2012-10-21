@@ -18,14 +18,10 @@
 @interface SocialManager : NSObject{
     ACAccountStore *accountStore;
     NSMutableDictionary *accountsSettings;
-    NSInteger totalShareTasks;
-    NSInteger finishedShareTasks;
-    float progressShareTasks;
 }
 
 @property (strong) ACAccountStore *accountStore;
 @property (readonly) NSMutableDictionary *accountsSettings;
-@property (readonly) float progressShareTasks;
 
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId;
 -(void)setAccount:(NSString *)anAccountId enabled:(BOOL)isEnabled;

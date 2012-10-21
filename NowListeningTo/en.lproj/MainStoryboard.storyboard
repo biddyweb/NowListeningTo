@@ -386,6 +386,8 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Settings" id="MWo-zO-gae"/>
                     <connections>
+                        <outlet property="facebookSwitch" destination="81Y-te-IU3" id="cvh-qh-pdZ"/>
+                        <outlet property="nltSwitch" destination="09x-Se-YFU" id="tGS-rW-hB0"/>
                         <outlet property="twitterSwitch" destination="61k-Ob-hJY" id="hhd-rh-etN"/>
                     </connections>
                 </tableViewController>

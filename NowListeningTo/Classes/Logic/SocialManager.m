@@ -16,7 +16,7 @@
 #define kAccountsDictionary @"kAccountsDictionary"
 
 @implementation SocialManager
-@synthesize accountStore, accountsSettings, progressShareTasks;
+@synthesize accountStore, accountsSettings;
 
 #pragma mark - Private
 
@@ -59,7 +59,6 @@
                                                         }
                                                         
                                                         [[LogManager sharedInstance] addLog:logString];
-                                                        NSLog(@"#DEBUG %@", logString);
                                                     }];
                                                     
                                                 }else{
@@ -67,12 +66,8 @@
                                                     if (error){
                                                         NSString *anErrorString = [NSString stringWithFormat:@"ERROR on Twitter: %@", [error debugDescription]];
                                                         [[LogManager sharedInstance] addLog:anErrorString];
-                                                        NSLog(@"#DEBUG %@", anErrorString);
                                                     }
-                                                }
-                                                
-                                                finishedShareTasks++;
-                                                [[NSNotificationCenter defaultCenter] postNotificationName:@"kShareSongStepFinished" object:nil];
+                                                }                                                
                                             }
      ];
 }
@@ -105,11 +100,6 @@
                               }
                               
                               [[LogManager sharedInstance] addLog:logText];
-                              NSLog(@"#DEBUG %@", logText);
-                              
-                              finishedShareTasks++;
-                              [[NSNotificationCenter defaultCenter] postNotificationName:@"kShareSongStepFinished" object:nil];
-
                           }];
 }
 
@@ -143,23 +133,10 @@
             }else{
                 NSString *logText = @"ERROR on Facebook openSessionWithAllowLoginUI";
                 [[LogManager sharedInstance] addLog:logText];
-                NSLog(@"#DEBUG %@", logText);
             }
             
         }];
     }
-}
-
-#pragma mark - Properties
-
--(float)progressShareTasks{
-    float retVal = 0;
-    
-    if (totalShareTasks > 0){
-        retVal = finishedShareTasks / totalShareTasks;
-    }
-    
-    return retVal;
 }
 
 #pragma mark - Public
@@ -183,32 +160,19 @@
 }
 
 -(void)shareSong:(Song *)aSong{
-    finishedShareTasks = 0;
-    totalShareTasks = 0;
-    
+
     if ([self isAccountEnabledForShare:kAccountTwitter]){
         [self shareSongWithTwitterAccount:aSong];
-        
-        totalShareTasks ++;
     }
     
     if ([self isAccountEnabledForShare:kAccountFacebook]){
         [self shareSongWithFacebookAccount:aSong];
-        
-        totalShareTasks ++;
     }
     
     if ([self isAccountEnabledForShare:kAccountListeningTo]){
         //  #DEBUG
-        NSDateFormatter *aFormatter = [[NSDateFormatter alloc] init];
-        [aFormatter setDateFormat:@"s"];
-        NSString *aString = [aFormatter stringFromDate:[NSDate date]];
-        
-        NSDictionary *aDict = @{@"message" : aString};
-        [[NSNotificationCenter defaultCenter] postNotificationName:kStatusViewAnnounce object:nil userInfo:aDict];
+        [[LogManager sharedInstance] addLog:@"Response text from #NLTApp server"];
     }
-    
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kShareSongBegin" object:nil];
 }
 
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId{
