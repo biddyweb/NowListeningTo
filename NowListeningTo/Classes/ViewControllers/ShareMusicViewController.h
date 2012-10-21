@@ -8,12 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "MBProgressHUD.h"
+#import "StatusView.h"
 
 @interface ShareMusicViewController : UIViewController <MBProgressHUDDelegate>{
     MBProgressHUD *progressHUD;
     
     __weak IBOutlet UILabel *songLabel;
     __weak IBOutlet UIView *songLabelContainer;
+    
+    StatusView *statusView;
 }
 
 - (IBAction)refreshButtonTapped:(id)sender;

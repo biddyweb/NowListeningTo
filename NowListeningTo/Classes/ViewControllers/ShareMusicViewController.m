@@ -74,6 +74,9 @@
     
     songLabelContainer.layer.cornerRadius = 10;
     
+    statusView = [[StatusView alloc] initWithView:self.view];
+    [self.view addSubview:statusView];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProgress:) name:@"kShareSongBegin" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateProgress:) name:@"kShareSongStepFinished" object:nil];
     

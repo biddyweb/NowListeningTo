@@ -53,36 +53,13 @@
                                 <color key="shadowColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oyf-d8-bNz">
-                                <subviews>
-                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Succesfully shared song in Facebook" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UOP-YZ-Jvb">
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="21" id="ZNc-vI-yxF"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
-                                        <color key="textColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                        <color key="shadowColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                        <size key="shadowOffset" width="0.0" height="1"/>
-                                    </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstItem="UOP-YZ-Jvb" firstAttribute="leading" secondItem="oyf-d8-bNz" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="0oG-2z-nLA"/>
-                                    <constraint firstItem="UOP-YZ-Jvb" firstAttribute="top" secondItem="oyf-d8-bNz" secondAttribute="top" constant="4" id="Eyw-Cc-DXB"/>
-                                    <constraint firstAttribute="trailing" secondItem="UOP-YZ-Jvb" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="I1v-e8-xBA"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" white="0.95000000000000007" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="TLs-Ql-Jgg" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="1Y5-cX-Vgr"/>
                             <constraint firstItem="TLs-Ql-Jgg" firstAttribute="top" secondItem="3" secondAttribute="top" constant="121" id="2PE-hL-ASY"/>
-                            <constraint firstAttribute="bottom" secondItem="oyf-d8-bNz" secondAttribute="bottom" constant="386" id="5L7-tW-ES8"/>
                             <constraint firstItem="jGO-HM-4p1" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="JYV-yK-WXU"/>
-                            <constraint firstItem="oyf-d8-bNz" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="Mac-6V-1OX"/>
                             <constraint firstItem="r2L-yc-KHb" firstAttribute="top" secondItem="3" secondAttribute="top" constant="134" id="Qwj-8x-Dwp"/>
-                            <constraint firstItem="oyf-d8-bNz" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="RJY-Qf-Ey6"/>
                             <constraint firstItem="jGO-HM-4p1" firstAttribute="top" secondItem="3" secondAttribute="top" constant="64" id="Zhm-yN-Y9G"/>
                             <constraint firstAttribute="bottom" secondItem="TLs-Ql-Jgg" secondAttribute="bottom" constant="145" id="Zjk-bt-Czf"/>
                             <constraint firstAttribute="centerX" secondItem="jE2-L5-5r9" secondAttribute="centerX" type="user" id="dgp-Eg-zvP"/>
@@ -91,7 +68,6 @@
                             <constraint firstAttribute="bottom" secondItem="jE2-L5-5r9" secondAttribute="bottom" constant="92" id="kQW-mW-C9U"/>
                             <constraint firstItem="TLs-Ql-Jgg" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="pTJ-gR-oO9"/>
                             <constraint firstItem="r2L-yc-KHb" firstAttribute="centerX" secondItem="TLs-Ql-Jgg" secondAttribute="centerX" type="default" id="qce-Oa-4sC"/>
-                            <constraint firstItem="oyf-d8-bNz" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="zuF-cC-Udq"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="NLTApp" id="BbC-vP-4IL">
@@ -109,8 +85,6 @@
                     <connections>
                         <outlet property="songLabel" destination="r2L-yc-KHb" id="Ysi-5a-414"/>
                         <outlet property="songLabelContainer" destination="TLs-Ql-Jgg" id="D6z-AD-Cka"/>
-                        <outlet property="statusLabel" destination="UOP-YZ-Jvb" id="FfJ-Q5-eZC"/>
-                        <outlet property="statusView" destination="oyf-d8-bNz" id="B64-My-grh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
@@ -429,7 +403,7 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Idm-9e-7Zy">
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                <mutableString key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</mutableString>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -484,8 +458,6 @@
                 <relationship kind="action" name="shareButtonTapped:"/>
                 <relationship kind="outlet" name="songLabel" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="songLabelContainer" candidateClass="UIView"/>
-                <relationship kind="outlet" name="statusLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="statusView" candidateClass="UIView"/>
             </relationships>
         </class>
     </classes>

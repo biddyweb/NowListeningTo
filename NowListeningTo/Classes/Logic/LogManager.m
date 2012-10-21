@@ -7,6 +7,7 @@
 //
 
 #import "LogManager.h"
+#import "StatusView.h"
 
 @implementation LogManager
 @synthesize logs;
@@ -15,7 +16,7 @@
 
 -(void)announceWithTextMessage:(NSString *)aMessage{
     NSDictionary *aDict = @{@"message" : aMessage};
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"kStatusAnnounce" object:nil userInfo:aDict];
+    [[NSNotificationCenter defaultCenter] postNotificationName:kStatusViewAnnounce object:nil userInfo:aDict];
 }
 
 #pragma mark - Public
