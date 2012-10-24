@@ -17,13 +17,31 @@
 
 #pragma mark - Private
 
--(void)updateStatusView{    
+-(void)updateStatusViewWithDictionary:(NSDictionary *)aDictionary{
+    
+    NSString *aMessage = [aDictionary objectForKey:@"message"];
+    NSString *aMessageType = [aDictionary objectForKey:@"type"];
+    
+    titleLabel.text = aMessage;
+    
+    if([aMessageType isEqualToString:kMessageTypeError]){
+        self.backgroundColor = [UIColor colorWithRed:214/255.0 green:8/255.0 blue:59/255.0 alpha:STATUSVIEW_OPACITY];
+    }else if([aMessageType isEqualToString:kMessageTypeSuccess]){
+        self.backgroundColor = [UIColor colorWithRed:0 green:120/255.0 blue:54/255.0 alpha:STATUSVIEW_OPACITY];
+    }else if ([aMessageType isEqualToString:kMessageTypeInfo]){
+        self.backgroundColor = [UIColor colorWithRed:0 green:46/255.0 blue:95/255.0 alpha:STATUSVIEW_OPACITY];
+    }else{
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:STATUSVIEW_OPACITY];
+    }
+}
+
+-(void)updateStatusView{
     if ([messages count] > 0){
 
         //  Update message
-        NSString *announce = messages[0];
-        titleLabel.text = announce;
-        [messages removeObject:announce];
+        NSDictionary *aMessageDictionary = messages[0];
+        [self updateStatusViewWithDictionary:aMessageDictionary];
+        [messages removeObject:aMessageDictionary];
         
         [self performSelector:@selector(updateStatusView) withObject:nil afterDelay:STATUSVIEW_DELAY];
         
@@ -41,13 +59,12 @@
 -(void)showStatusView:(NSNotification *)aNotification{
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        NSString *aMessage = [aNotification.userInfo objectForKey:@"message"];
-        [messages addObject:aMessage];
+        [messages addObject:aNotification.userInfo];
         
         if ([messages count] > 1){
 
         }else{
-            titleLabel.text = aMessage;
+            [self updateStatusViewWithDictionary:aNotification.userInfo];
             
             //  Setup begin and end frames
             CGRect statusViewEndFrame = self.frame;
@@ -97,6 +114,12 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatusView:) name:kStatusViewAnnounce object:nil];
     }
     return self;
+}
+
++(void)displayStatusMessage:(NSString *)aMessage withType:(NSString *)aType{
+    NSDictionary *aDict = @{@"message" : aMessage, @"type" : aType};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kStatusViewAnnounce object:nil userInfo:aDict];
+
 }
 
 @end
