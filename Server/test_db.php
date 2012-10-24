@@ -11,5 +11,6 @@
 	//	$artist = getArtistForTitle("Pearl Jam");
 	//	insertSongWithArtistId("Black", $artist['id']);
 
-	addTimelineEntry(1, "Strange things have happened", "Foo Fighters");
+	//	Works ok
+	//	addTimelineEntry(1, "Strange things have happened", "Foo Fighters");
 ?>
