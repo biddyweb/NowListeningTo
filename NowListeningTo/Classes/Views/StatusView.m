@@ -44,6 +44,18 @@
         NSString *aMessage = [aNotification.userInfo objectForKey:@"message"];
         [messages addObject:aMessage];
         
+        NSString *aMessageType = [aNotification.userInfo objectForKey:@"type"];
+        
+        if([aMessageType isEqualToString:kMessageTypeError]){
+            self.backgroundColor = [UIColor colorWithRed:214/255.0 green:8/255.0 blue:59/255.0 alpha:STATUSVIEW_OPACITY];
+        }else if([aMessageType isEqualToString:kMessageTypeSuccess]){
+            self.backgroundColor = [UIColor colorWithRed:0 green:120/255.0 blue:54/255.0 alpha:STATUSVIEW_OPACITY];
+        }else if ([aMessageType isEqualToString:kMessageTypeInfo]){
+            self.backgroundColor = [UIColor colorWithRed:0 green:46/255.0 blue:95/255.0 alpha:STATUSVIEW_OPACITY];
+        }else{
+            self.backgroundColor = [UIColor colorWithWhite:0 alpha:STATUSVIEW_OPACITY];
+        }
+        
         if ([messages count] > 1){
 
         }else{
@@ -97,6 +109,12 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showStatusView:) name:kStatusViewAnnounce object:nil];
     }
     return self;
+}
+
++(void)displayStatusMessage:(NSString *)aMessage withType:(NSString *)aType{
+    NSDictionary *aDict = @{@"message" : aMessage, @"type" : aType};
+    [[NSNotificationCenter defaultCenter] postNotificationName:kStatusViewAnnounce object:nil userInfo:aDict];
+
 }
 
 @end

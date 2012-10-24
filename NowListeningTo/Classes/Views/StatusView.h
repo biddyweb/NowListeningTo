@@ -10,11 +10,18 @@
 
 #define kStatusViewAnnounce @"kStatusViewAnnounce"
 
+#define kMessageTypeError @"kMessageTypeError"
+#define kMessageTypeDefault @"kMessageTypeDefault"
+#define kMessageTypeSuccess @"kMessageTypeSuccess"
+#define kMessageTypeInfo @"kMessageTypeInfo"
+
 @interface StatusView : UIView{
     NSMutableArray *messages;
     UILabel *titleLabel;
 }
 
 -(id)initWithView:(UIView *)aView;
+
++(void)displayStatusMessage:(NSString *)aMessage withType:(NSString *)aType;
 
 @end

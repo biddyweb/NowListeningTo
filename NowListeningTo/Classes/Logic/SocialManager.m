@@ -48,16 +48,18 @@
                                                         //  Handle errors
                                                         
                                                         NSString *logString = nil;
-                                                        
+                                                        NSString *messageType = nil;
 //                                                        NSString *response = [[NSString alloc] initWithData:responseData encoding:NSUTF8StringEncoding];
                                                         
                                                         if (error){
                                                             logString = [NSString stringWithFormat:@"ERROR on Twitter: %@", [error debugDescription]];
-
+                                                            messageType = kMessageTypeError;
                                                         }else{
                                                             logString = @"Succesfully posted on Twitter";
+                                                            messageType = kMessageTypeSuccess;
                                                         }
                                                         
+                                                        [StatusView displayStatusMessage:logString withType:messageType];
                                                         [[LogManager sharedInstance] addLog:logString];
                                                     }];
                                                     
@@ -65,6 +67,7 @@
                                                     //  Fail
                                                     if (error){
                                                         NSString *anErrorString = [NSString stringWithFormat:@"ERROR on Twitter: %@", [error debugDescription]];
+                                                        [StatusView displayStatusMessage:anErrorString withType:kMessageTypeError];
                                                         [[LogManager sharedInstance] addLog:anErrorString];
                                                     }
                                                 }                                                
@@ -91,14 +94,15 @@
                                               NSError *error) {
                               
                               NSString *logText = nil;
-                              
+                              NSString *messageType = nil;
                               if (error) {
                                   logText = [NSString stringWithFormat:@"ERROR on Facebook: domain = %@, code = %d", error.domain, error.code];
-                                  
+                                  messageType = kMessageTypeError;
                               } else {
                                   logText = [NSString stringWithFormat:@"Succesfully posted action on Facebook (id: %@)",                              [result objectForKey:@"id"]];
+                                  messageType = kMessageTypeSuccess;
                               }
-                              
+                              [StatusView displayStatusMessage:logText withType:messageType];
                               [[LogManager sharedInstance] addLog:logText];
                           }];
 }
@@ -133,6 +137,7 @@
             }else{
                 NSString *logText = @"ERROR on Facebook openSessionWithAllowLoginUI";
                 [[LogManager sharedInstance] addLog:logText];
+                [StatusView displayStatusMessage:logText withType:kMessageTypeError];
             }
             
         }];
@@ -171,7 +176,7 @@
     
     if ([self isAccountEnabledForShare:kAccountListeningTo]){
         //  #DEBUG
-        [[LogManager sharedInstance] addLog:@"Response text from #NLTApp server"];
+        [StatusView displayStatusMessage:@"Response text from #NLTApp server" withType:kMessageTypeInfo];
     }
 }
 
