@@ -17,6 +17,13 @@
 
 		//	Get userId
 		$user = getUserForOpenUDID($userUDID);
+		$userId = -1;
+		
+		if ($user){
+			$userId = $user['id'];
+		}else{
+			$userId = insertUser($userUDID);
+		}
 
 		//	Get song
 		$song = getSongForTitleAndArtist($songTitle, $songArtist);
@@ -41,8 +48,8 @@
 			$songId = insertSongWithArtistId($songTitle, $artistId);
 		}
 
-		insertTimelineEntry($songId, $user['id']);		
-
+		$retVal = insertTimelineEntry($songId, $userId);		
+		return $retVal;
 	}
 
 	function insertTimelineEntry($songId, $userId){
@@ -111,7 +118,6 @@
 		connect();
 
 		$query = sprintf("INSERT INTO songs (title, artistId) VALUES ('%s', %d)", $songTitle, $artistId);
-		print_r($query);
 
 		$result = mysql_query($query);
 

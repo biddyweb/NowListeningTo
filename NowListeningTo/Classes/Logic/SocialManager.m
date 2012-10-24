@@ -12,6 +12,8 @@
 #import <FacebookSDK/FacebookSDK.h>
 #import "LogManager.h"
 #import "StatusView.h"
+#import "AFNetworking.h"
+#import "OpenUDID.h"
 
 #define kAccountsDictionary @"kAccountsDictionary"
 
@@ -160,6 +162,51 @@
     return self;
 }
 
+-(void)shareSongWithNLTServer:(Song *)aSong{
+    NSString *urlString = [NSString stringWithFormat:@"http://www.asandbox.com.ar/nowlisteningto/index.php?action=add&song=%@&artist=%@&user=%@",
+                                [aSong.title stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy],
+                                [aSong.artist stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy],
+                                [OpenUDID value]];
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.completionBlock = ^{
+        NSError *anError = nil;
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
+                                                                     options:NSJSONReadingAllowFragments
+                                                                       error:&anError];
+        NSString *messageString = nil;
+        NSString *messageType = kMessageTypeDefault;
+        
+        if (anError){
+            messageString = anError.debugDescription;
+            messageType = kMessageTypeError;
+            NSLog(@"#DEBUG Error: %@", messageString);
+            
+        }else{
+            NSString *errorMessage = [responseDict objectForKey:@"error"];
+            NSString *responseString = [responseDict objectForKey:@"message"];
+            
+            if (errorMessage){
+                messageType = kMessageTypeError;
+                messageString = errorMessage;
+                NSLog(@"#DEBUG Error: %@", messageString);
+                
+            }else if (responseString){
+                messageType = kMessageTypeSuccess;
+                messageString = responseString;
+            }else{
+                messageString = @"Unknown response from #NLTApp";
+            }
+        }
+        
+        [StatusView displayStatusMessage:messageString withType:messageType];
+    };
+    
+    [operation start];
+}
+
 -(void)saveToDisk{
     [[NSUserDefaults standardUserDefaults] setObject:accountsSettings forKey:kAccountsDictionary];
 }
@@ -175,8 +222,7 @@
     }
     
     if ([self isAccountEnabledForShare:kAccountListeningTo]){
-        //  #DEBUG
-        [StatusView displayStatusMessage:@"Response text from #NLTApp server" withType:kMessageTypeInfo];
+        [self shareSongWithNLTServer:aSong];
     }
 }
 
