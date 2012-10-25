@@ -163,9 +163,9 @@
 }
 
 -(void)shareSongWithNLTServer:(Song *)aSong{
-    NSString *urlString = [NSString stringWithFormat:@"http://www.asandbox.com.ar/nowlisteningto/index.php?action=add&song=%@&artist=%@&user=%@",
-                                [aSong.title stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy],
-                                [aSong.artist stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionAllowLossy],
+    NSString *urlString = [NSString stringWithFormat:@"http://www.asandbox.com.ar/nowlisteningto/service.php?action=add&song=%@&artist=%@&user=%@",
+                                [aSong.title stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionExternalRepresentation],
+                                [aSong.artist stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionExternalRepresentation],
                                 [OpenUDID value]];
     NSURL *url = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];

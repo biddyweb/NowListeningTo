@@ -140,5 +140,21 @@
 
 		return $lastId;
 	}
+	
+	function getTimeline(){
+		connect();
+		
+		$query = sprintf("SELECT songs.title as song, artists.title as artist, users.username as username, timelines.date as date FROM timelines INNER JOIN songs ON timelines.songId = songs.id INNER JOIN artists ON songs.artistid = artists.id INNER JOIN users ON users.id = timelines.userid");
+
+		$result = mysql_query($query);
+
+		while ($row = mysql_fetch_array($result, MYSQL_ASSOC)){
+			$retVal[] = $row;
+		}
+		
+		disconnect();
+		
+		return $retVal;
+	}
 
 ?>
