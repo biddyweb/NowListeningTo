@@ -8,12 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "StatusView.h"
+#import "LoadingView.h"
 
 @interface ShareMusicViewController : UIViewController{    
     __weak IBOutlet UILabel *songLabel;
     __weak IBOutlet UIView *songLabelContainer;
     
     StatusView *statusView;
+    LoadingView *loadingView;
 }
 
 - (IBAction)refreshButtonTapped:(id)sender;

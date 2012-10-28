@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface LoadingView : UIView
+#define kHideLoadingViewNotification @"kHideLoadingViewNotification"
 
+@interface LoadingView : UIView{
+    UIActivityIndicatorView *activityView;
+}
+
+- (id)initWithSuperView:(UIView *)aView;
+- (void)stopAnimating;
 @end

@@ -16,12 +16,14 @@
 #define kAccountListeningTo @"kAccountListeningTo"
 
 @interface SocialManager : NSObject{
+    NSInteger pendingTasks;
     ACAccountStore *accountStore;
     NSMutableDictionary *accountsSettings;
 }
 
 @property (strong) ACAccountStore *accountStore;
 @property (readonly) NSMutableDictionary *accountsSettings;
+@property (readwrite) NSInteger pendingTasks;
 
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId;
 -(void)setAccount:(NSString *)anAccountId enabled:(BOOL)isEnabled;

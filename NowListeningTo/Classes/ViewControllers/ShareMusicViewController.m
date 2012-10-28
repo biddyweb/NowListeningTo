@@ -6,10 +6,11 @@
 //  Copyright (c) 2012 Betzerra. All rights reserved.
 //
 
+#import <QuartzCore/QuartzCore.h>
 #import "ShareMusicViewController.h"
 #import "SocialManager.h"
-#import <QuartzCore/QuartzCore.h>
 #import "MusicHelper.h"
+#import "LoadingView.h"
 
 @implementation ShareMusicViewController
 
@@ -45,6 +46,12 @@
     songLabel.text = songText;
 }
 
+#pragma mark - Notifications
+
+-(void)removeLoadingView:(NSNotification *)aNotification{
+    [loadingView stopAnimating];
+}
+
 #pragma mark - Public
 
 - (void)viewDidLoad{
@@ -63,6 +70,14 @@
     [self autoResizeUILabelFont:songLabel];    
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(removeLoadingView:)
+                                                 name:kHideLoadingViewNotification
+                                               object:nil];
+}
+
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
@@ -78,6 +93,9 @@
 }
 
 - (IBAction)shareButtonTapped:(id)sender {
+    loadingView = [[LoadingView alloc] initWithSuperView:self.view];
+    [self.view addSubview:loadingView];
+    
     [[SocialManager sharedInstance] shareSong:[MusicHelper currentSong]];
 }
 @end

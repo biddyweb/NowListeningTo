@@ -44,6 +44,7 @@
 		67B8271A16290AA30013E4D4 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271916290AA30013E4D4 /* Default@2x.png */; };
 		67B8271C16290AA30013E4D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271B16290AA30013E4D4 /* Default-568h@2x.png */; };
 		67B8271F16290AA30013E4D4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271D16290AA30013E4D4 /* MainStoryboard.storyboard */; };
+		67BADC78163DDE3500192ED5 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BADC77163DDE3500192ED5 /* LoadingView.m */; };
 		67E093801629FC63007BD447 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0937F1629FC63007BD447 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		67E0938B1629FE4F007BD447 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0938A1629FE4F007BD447 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -109,6 +110,8 @@
 		67B8271916290AA30013E4D4 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		67B8271B16290AA30013E4D4 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		67B8271E16290AA30013E4D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		67BADC76163DDE3500192ED5 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Views/LoadingView.h; sourceTree = "<group>"; };
+		67BADC77163DDE3500192ED5 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Views/LoadingView.m; sourceTree = "<group>"; };
 		67E0937F1629FC63007BD447 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		67E0938A1629FE4F007BD447 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -207,6 +210,8 @@
 		677A0AD716337EFB002358A6 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				67BADC76163DDE3500192ED5 /* LoadingView.h */,
+				67BADC77163DDE3500192ED5 /* LoadingView.m */,
 				677A0AD916337F38002358A6 /* StatusView.h */,
 				677A0ADA16337F38002358A6 /* StatusView.m */,
 			);
@@ -406,6 +411,7 @@
 				679401D916389CB0007979DC /* AFURLConnectionOperation.m in Sources */,
 				679401DA16389CB0007979DC /* AFXMLRequestOperation.m in Sources */,
 				679401DB16389CB0007979DC /* UIImageView+AFNetworking.m in Sources */,
+				67BADC78163DDE3500192ED5 /* LoadingView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

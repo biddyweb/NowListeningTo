@@ -14,6 +14,7 @@
 #import "StatusView.h"
 #import "AFNetworking.h"
 #import "OpenUDID.h"
+#import "LoadingView.h"
 
 #define kAccountsDictionary @"kAccountsDictionary"
 
@@ -30,7 +31,7 @@
                                             completion:^(BOOL granted, NSError *error) {
                                                 
                                                 if (granted){
-                                                    //  Success
+                                                    //  SUCCESS: Access granted
                                                     NSArray *accounts = [self.accountStore accountsWithAccountType:twitterAccountType];
                                                     
                                                     //  #TODO this should be customizable on settings
@@ -63,15 +64,17 @@
                                                         
                                                         [StatusView displayStatusMessage:logString withType:messageType];
                                                         [[LogManager sharedInstance] addLog:logString];
+                                                        self.pendingTasks--;
                                                     }];
                                                     
                                                 }else{
-                                                    //  Fail
+                                                    //  FAIL: Access NOT grantes
                                                     if (error){
-                                                        NSString *anErrorString = [NSString stringWithFormat:@"ERROR on Twitter: %@", [error debugDescription]];
+                                                        NSString *anErrorString = @"ERROR on Twitter";
                                                         [StatusView displayStatusMessage:anErrorString withType:kMessageTypeError];
                                                         [[LogManager sharedInstance] addLog:anErrorString];
                                                     }
+                                                    self.pendingTasks--;
                                                 }                                                
                                             }
      ];
@@ -98,14 +101,15 @@
                               NSString *logText = nil;
                               NSString *messageType = nil;
                               if (error) {
-                                  logText = [NSString stringWithFormat:@"ERROR on Facebook: domain = %@, code = %d", error.domain, error.code];
+                                  logText = @"ERROR on Facebook";
                                   messageType = kMessageTypeError;
                               } else {
-                                  logText = [NSString stringWithFormat:@"Succesfully posted action on Facebook (id: %@)",                              [result objectForKey:@"id"]];
+                                  logText = @"Succesfully posted on Facebook";
                                   messageType = kMessageTypeSuccess;
                               }
                               [StatusView displayStatusMessage:logText withType:messageType];
                               [[LogManager sharedInstance] addLog:logText];
+                              self.pendingTasks--;
                           }];
 }
 
@@ -140,10 +144,26 @@
                 NSString *logText = @"ERROR on Facebook openSessionWithAllowLoginUI";
                 [[LogManager sharedInstance] addLog:logText];
                 [StatusView displayStatusMessage:logText withType:kMessageTypeError];
+                self.pendingTasks--;
             }
             
         }];
     }
+}
+
+#pragma mark - Properties
+
+-(void)setPendingTasks:(NSInteger)newValue{
+    if (pendingTasks != newValue){
+        pendingTasks = newValue;
+        if (pendingTasks <= 0){
+            [[NSNotificationCenter defaultCenter] postNotificationName:kHideLoadingViewNotification object:nil];
+        }        
+    }
+}
+
+-(NSInteger)pendingTasks{
+    return pendingTasks;
 }
 
 #pragma mark - Public
@@ -151,6 +171,7 @@
 -(id)init{
     self = [super init];
     if (self){
+        self.pendingTasks = 0;
         self.accountStore = [[ACAccountStore alloc] init];
         accountsSettings = [[NSMutableDictionary alloc] init];
         
@@ -201,6 +222,7 @@
             }
         }
         
+        self.pendingTasks--;
         [StatusView displayStatusMessage:messageString withType:messageType];
     };
     
@@ -215,14 +237,17 @@
 
     if ([self isAccountEnabledForShare:kAccountTwitter]){
         [self shareSongWithTwitterAccount:aSong];
+        self.pendingTasks++;
     }
     
     if ([self isAccountEnabledForShare:kAccountFacebook]){
         [self shareSongWithFacebookAccount:aSong];
+        self.pendingTasks++;
     }
     
     if ([self isAccountEnabledForShare:kAccountListeningTo]){
         [self shareSongWithNLTServer:aSong];
+        self.pendingTasks++;
     }
 }
 
