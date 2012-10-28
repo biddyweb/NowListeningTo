@@ -7,11 +7,9 @@
     <!-- Bootstrap -->
     <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     
-    <style>
-      body {
-        padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
-      }
-    </style>
+    <!-- Responsive stuff from Bootstrap -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="libs/bootstrap/css/bootstrap-responsive.css" rel="stylesheet">
         
   </head>
   <body>
@@ -26,7 +24,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Betzerra's playlist</a>
+          <a class="brand" href="#">#NLTApp</a>
           <div class="nav-collapse collapse">
             <ul class="nav">
               <li class="active"><a href="#">Home</a></li>
@@ -47,7 +45,7 @@
 	    					$timelineArray = getTimeline();
 	    					
 	    					foreach($timelineArray as $item){
-		    					$rowString = sprintf("<tr><td>%s listened to '%s' by '%s'</td></tr>", $item['username'], $item['song'], $item['artist']);
+		    					$rowString = sprintf("<tr><td><b>%s</b> listened to '%s' by '%s'</td></tr>", $item['username'], $item['song'], $item['artist']);
 		    					echo $rowString;
 	    					}
 	    				?>
