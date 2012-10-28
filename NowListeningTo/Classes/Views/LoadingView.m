@@ -64,16 +64,18 @@
 }
 
 -(void)stopAnimating{
-    [UIView animateWithDuration:0.5
-                     animations:^{
-                         self.alpha = 0;
-                     }
-                     completion:^(BOOL completed){
-                         if (completed){
-                             [self.superview setUserInteractionEnabled:YES];
-                             [self removeFromSuperview];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.5
+                         animations:^{
+                             self.alpha = 0;
                          }
-                     }];
+                         completion:^(BOOL completed){
+                             if (completed){
+                                 [self.superview setUserInteractionEnabled:YES];
+                                 [self removeFromSuperview];
+                             }
+                         }];        
+    });
 }
 
 @end
