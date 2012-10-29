@@ -9,8 +9,8 @@
 #import "LoadingView.h"
 #import <QuartzCore/QuartzCore.h>
 
-#define DEFAULT_WIDTH 50
-#define DEFAULT_HEIGHT 50
+#define DEFAULT_WIDTH 65
+#define DEFAULT_HEIGHT 65
 
 @implementation LoadingView
 
@@ -91,7 +91,7 @@
         [self addSubview:activityView];
         
         //  Set round corners and background color
-        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.85];
+        self.backgroundColor = [UIColor colorWithWhite:0 alpha:0.90];
         self.layer.cornerRadius = 10;
     }
     return self;
@@ -100,15 +100,16 @@
 -(void)stopAnimating{
     dispatch_async(dispatch_get_main_queue(), ^{
         [UIView animateWithDuration:0.5
+                              delay:1
+                            options:UIViewAnimationOptionTransitionNone
                          animations:^{
                              self.alpha = 0;
-                         }
-                         completion:^(BOOL completed){
-                             if (completed){
+                         } completion:^(BOOL finished) {
+                             if (finished){
                                  [self.superview setUserInteractionEnabled:YES];
                                  [self removeFromSuperview];
                              }
-                         }];        
+                         }];
     });
 }
 
