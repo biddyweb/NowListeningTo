@@ -45,6 +45,7 @@
 		67B8271C16290AA30013E4D4 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271B16290AA30013E4D4 /* Default-568h@2x.png */; };
 		67B8271F16290AA30013E4D4 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B8271D16290AA30013E4D4 /* MainStoryboard.storyboard */; };
 		67BADC78163DDE3500192ED5 /* LoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 67BADC77163DDE3500192ED5 /* LoadingView.m */; };
+		67BADC7B163E00C600192ED5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BADC7A163E00C600192ED5 /* QuartzCore.framework */; };
 		67E093801629FC63007BD447 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0937F1629FC63007BD447 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		67E0938B1629FE4F007BD447 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0938A1629FE4F007BD447 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
@@ -112,6 +113,7 @@
 		67B8271E16290AA30013E4D4 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
 		67BADC76163DDE3500192ED5 /* LoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadingView.h; path = Views/LoadingView.h; sourceTree = "<group>"; };
 		67BADC77163DDE3500192ED5 /* LoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadingView.m; path = Views/LoadingView.m; sourceTree = "<group>"; };
+		67BADC7A163E00C600192ED5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		67E0937F1629FC63007BD447 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		67E0938A1629FE4F007BD447 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -121,6 +123,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				67BADC7B163E00C600192ED5 /* QuartzCore.framework in Frameworks */,
 				67B71630162F575A00E4030A /* AdSupport.framework in Frameworks */,
 				67E0938B1629FE4F007BD447 /* Accounts.framework in Frameworks */,
 				67E093801629FC63007BD447 /* Social.framework in Frameworks */,
@@ -281,6 +284,7 @@
 		67B8270416290AA30013E4D4 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				67BADC7A163E00C600192ED5 /* QuartzCore.framework */,
 				671A208316326416006B8CC9 /* FacebookSDK.framework */,
 				67B7162F162F575A00E4030A /* AdSupport.framework */,
 				67E0938A1629FE4F007BD447 /* Accounts.framework */,
