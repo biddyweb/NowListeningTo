@@ -29,6 +29,7 @@
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId;
 -(void)setAccount:(NSString *)anAccountId enabled:(BOOL)isEnabled;
 -(void)shareSong:(Song *)aSong;
+-(void)signUpUserWithParams:(NSDictionary *)aDictionary;
 -(void)saveToDisk;
 +(SocialManager *)sharedInstance;
 

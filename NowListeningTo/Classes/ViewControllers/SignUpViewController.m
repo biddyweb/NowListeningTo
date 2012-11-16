@@ -11,8 +11,23 @@
 
 @implementation SignUpViewController
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+#pragma mark - Private
+
+- (BOOL)areTextFieldsComplete{
+    BOOL retVal = YES;
+
+    if ([emailTextfield.text isEqualToString:@""] ||
+        [passwordTextfield.text isEqualToString:@""]){
+        
+        retVal = NO;
+    }
+    
+    return retVal;
+}
+
+#pragma mark - Public
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     // Navigation logic may go here. Create and push another view controller.
     /*
      <#DetailViewController#> *detailViewController = [[<#DetailViewController#> alloc] initWithNibName:@"<#Nib name#>" bundle:nil];
@@ -24,5 +39,26 @@
 
 - (IBAction)closeButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (IBAction)signUpButtonTapped:(id)sender {
+    
+    if ([self areTextFieldsComplete]){
+        NSDictionary *params = @{
+        @"email" : usernameTextfield.text,
+        @"username" : usernameTextfield.text,
+        @"password" : passwordTextfield.text
+        };
+        
+        [[SocialManager sharedInstance] signUpUserWithParams:params];
+        
+    }else{
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                            message:@"Please complete email and password textfields"
+                                                           delegate:nil
+                                                  cancelButtonTitle:@"Ok"
+                                                  otherButtonTitles:nil];
+        [alertView show];
+    }
 }
 @end

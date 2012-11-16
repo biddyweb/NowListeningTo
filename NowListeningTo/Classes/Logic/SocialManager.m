@@ -305,6 +305,36 @@
     [operation start];
 }
 
+-(void)signUpUserWithParams:(NSDictionary *)aDictionary{
+    //  Get base URL, we'll specify the path later
+    NSURL *baseUrl = [NSURL URLWithString:kServerBaseUrl];
+    
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
+    
+    //  Get the parameters that are going to be posted
+    NSDictionary *params = @{
+                            @"udid" : [OpenUDID value],
+                            @"email" : [aDictionary objectForKey:@"email"],
+                            @"username" : [aDictionary objectForKey:@"username"],
+                            @"password" : [aDictionary objectForKey:@"password"],
+                            @"format" : @"json"
+                            };
+    
+    NSURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"users/create" parameters:params];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.completionBlock = ^{
+        NSError *anError = nil;
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
+                                                                     options:NSJSONReadingAllowFragments
+                                                                       error:&anError];
+        NSLog(@"#DEBUG response: %@", operation.responseString);
+    };
+    
+    [operation start];
+}
+
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId{
     BOOL retVal = NO;
     

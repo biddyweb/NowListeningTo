@@ -259,6 +259,9 @@
                                                     <state key="highlighted">
                                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="signUpButtonTapped:" destination="SEn-ZC-II9" eventType="touchUpInside" id="5G8-M1-Lt8"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -277,6 +280,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="qby-6S-zAU"/>
+                    <connections>
+                        <outlet property="emailTextfield" destination="wOf-8J-xy1" id="dsg-sB-ZQl"/>
+                        <outlet property="passwordTextfield" destination="Xlz-bn-q0z" id="Vdn-ey-IRH"/>
+                        <outlet property="usernameTextfield" destination="0aL-nn-kxX" id="HsB-Yp-v4f"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M8D-cS-TMi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -640,6 +648,10 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/SignUpViewController.h"/>
             <relationships>
                 <relationship kind="action" name="closeButtonTapped:"/>
+                <relationship kind="outlet" name="emailTextfield" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="passwordTextfield" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="signUpButtonTapped" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="usernameTextfield" candidateClass="UITextField"/>
             </relationships>
         </class>
     </classes>
