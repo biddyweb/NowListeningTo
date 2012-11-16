@@ -17,6 +17,7 @@
 #import "LoadingView.h"
 
 #define kAccountsDictionary @"kAccountsDictionary"
+#define kServerBaseUrl @"http://192.168.1.106:3000"
 
 @implementation SocialManager
 @synthesize accountStore, accountsSettings;
@@ -185,65 +186,68 @@
 
 -(void)shareSongWithNLTServer:(Song *)aSong{
     
-    //  Get base URL, we'll specify the path later
-    NSString *urlString = [NSString stringWithFormat:@"http://127.0.0.1:3000"];
-    NSURL *baseUrl = [NSURL URLWithString:urlString];
-
-    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
-
-    if (aSong == nil){
-        aSong = [[Song alloc] init];
-        aSong.title = @"Lorem Ipsum";
-        aSong.artist = @"The Lipsums";
-    }
-    
-    //  Get the parameters that are going to be posted
-    NSDictionary *params = @{
-                            @"song" : aSong.title,
-                            @"artist" : aSong.artist,
-                            @"openId" : [OpenUDID value],
-                            @"format" : @"json"
-                            };
-    
-    NSURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/posts" parameters:params];
-    
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.completionBlock = ^{
-        NSError *anError = nil;
-        NSLog(@"LOG: %@", operation.responseString);
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
-                                                                     options:NSJSONReadingAllowFragments
-                                                                       error:&anError];
-        NSString *messageString = nil;
-        NSString *messageType = kMessageTypeDefault;
+    [self checkUserWithCompletionBlock:^{
+        //  Get base URL, we'll specify the path later
+        NSURL *baseUrl = [NSURL URLWithString:kServerBaseUrl];
         
-        if (anError){
-            messageString = anError.debugDescription;
-            messageType = kMessageTypeError;
-            NSLog(@"#DEBUG Error: %@", messageString);
-            
-        }else{
-            NSString *errorMessage = [responseDict objectForKey:@"error"];
-            NSString *responseString = [responseDict objectForKey:@"message"];
-            
-            if (errorMessage){
-                messageType = kMessageTypeError;
-                messageString = errorMessage;
-                NSLog(@"#DEBUG Error: %@", messageString);
-                
-            }else if (responseString){
-                messageType = kMessageTypeSuccess;
-                messageString = responseString;
-            }else{
-                messageString = @"Unknown response from #NLTApp";
-            }
+        AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
+        
+        Song *song = aSong;
+        
+        if (song == nil){
+            song = [[Song alloc] init];
+            song.title = @"Lorem Ipsum";
+            song.artist = @"The Lipsums";
         }
         
-        self.pendingTasks--;
-        [StatusView displayStatusMessage:messageString withType:messageType];
-    };
-    
-    [operation start];
+        //  Get the parameters that are going to be posted
+        NSDictionary *params = @{
+                                @"song" : song.title,
+                                @"artist" : song.artist,
+                                @"udid" : [OpenUDID value],
+                                @"format" : @"json"
+                                };
+        
+        NSURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/posts" parameters:params];
+        
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+        operation.completionBlock = ^{
+            NSError *anError = nil;
+            //        NSLog(@"LOG: %@", operation.responseString);
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
+                                                                         options:NSJSONReadingAllowFragments
+                                                                           error:&anError];
+            NSString *messageString = nil;
+            NSString *messageType = kMessageTypeDefault;
+            
+            if (anError){
+                messageString = anError.debugDescription;
+                messageType = kMessageTypeError;
+                NSLog(@"#DEBUG Error: %@", messageString);
+                
+            }else{
+                NSString *errorMessage = [responseDict objectForKey:@"error"];
+                NSString *responseString = [responseDict objectForKey:@"message"];
+                
+                if (errorMessage){
+                    messageType = kMessageTypeError;
+                    messageString = errorMessage;
+                    NSLog(@"#DEBUG Error: %@", messageString);
+                    
+                }else if (responseString){
+                    messageType = kMessageTypeSuccess;
+                    messageString = responseString;
+                }else{
+                    messageString = @"Unknown response from #NLTApp";
+                }
+            }
+            
+            self.pendingTasks--;
+            [StatusView displayStatusMessage:messageString withType:messageType];
+        };
+        
+        [operation start];
+    }];
 }
 
 -(void)saveToDisk{
@@ -266,6 +270,39 @@
         [self shareSongWithNLTServer:aSong];
         self.pendingTasks++;
     }
+}
+
+-(void)checkUserWithCompletionBlock:(void (^)(void))aBlock{
+    //  Get base URL, we'll specify the path later
+    NSURL *baseUrl = [NSURL URLWithString:kServerBaseUrl];
+    
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
+
+    //  Get the parameters that are going to be posted
+    NSDictionary *params = @{
+                            @"udid" : [OpenUDID value],
+                            @"format" : @"json"
+                            };
+    
+    NSURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"users/exists" parameters:params];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.completionBlock = ^{
+        NSError *anError = nil;
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
+                                                                     options:NSJSONReadingAllowFragments
+                                                                       error:&anError];
+        
+        BOOL exists = [[responseDict objectForKey:@"response"] boolValue];
+        if (!anError && exists){
+            aBlock();
+        }else{
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDisplaySignUpNotification object:nil];
+        }
+    };
+    
+    [operation start];
 }
 
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId{

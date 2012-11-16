@@ -10,6 +10,7 @@
 		671623F316291BE700DE00AB /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671623F216291BE700DE00AB /* MediaPlayer.framework */; };
 		671A20821632640D006B8CC9 /* FacebookSDKResources.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 671A20811632640D006B8CC9 /* FacebookSDKResources.bundle */; };
 		671A208416326416006B8CC9 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 671A208316326416006B8CC9 /* FacebookSDK.framework */; };
+		6725B7C51656BCB4009590AA /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6725B7C41656BCB4009590AA /* SignUpViewController.m */; };
 		67671B9716319B9B00B0A7EB /* ios_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 67671B9616319B9B00B0A7EB /* ios_icon.png */; };
 		67671B9916319BA000B0A7EB /* ios_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 67671B9816319BA000B0A7EB /* ios_icon@2x.png */; };
 		67671BB11631A49800B0A7EB /* Song.m in Sources */ = {isa = PBXBuildFile; fileRef = 67671BA41631A49800B0A7EB /* Song.m */; };
@@ -54,6 +55,8 @@
 		671623F216291BE700DE00AB /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		671A20811632640D006B8CC9 /* FacebookSDKResources.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; name = FacebookSDKResources.bundle; path = Libs/Facebook/FacebookSDKResources.bundle; sourceTree = "<group>"; };
 		671A208316326416006B8CC9 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Libs/Facebook/FacebookSDK.framework; sourceTree = "<group>"; };
+		6725B7C31656BCB4009590AA /* SignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		6725B7C41656BCB4009590AA /* SignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
 		67671B9616319B9B00B0A7EB /* ios_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ios_icon.png; sourceTree = "<group>"; };
 		67671B9816319BA000B0A7EB /* ios_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ios_icon@2x.png"; sourceTree = "<group>"; };
 		67671BA31631A49800B0A7EB /* Song.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Song.h; sourceTree = "<group>"; };
@@ -174,6 +177,8 @@
 		67671BAA1631A49800B0A7EB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				6725B7C31656BCB4009590AA /* SignUpViewController.h */,
+				6725B7C41656BCB4009590AA /* SignUpViewController.m */,
 				67671BAB1631A49800B0A7EB /* LogViewController.h */,
 				67671BAC1631A49800B0A7EB /* LogViewController.m */,
 				67671BAD1631A49800B0A7EB /* SettingsViewController.h */,
@@ -416,6 +421,7 @@
 				679401DA16389CB0007979DC /* AFXMLRequestOperation.m in Sources */,
 				679401DB16389CB0007979DC /* UIImageView+AFNetworking.m in Sources */,
 				67BADC78163DDE3500192ED5 /* LoadingView.m in Sources */,
+				6725B7C51656BCB4009590AA /* SignUpViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

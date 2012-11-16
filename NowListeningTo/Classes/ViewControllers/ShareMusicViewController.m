@@ -11,6 +11,7 @@
 #import "SocialManager.h"
 #import "MusicHelper.h"
 #import "LoadingView.h"
+#import "SignUpViewController.h"
 
 @implementation ShareMusicViewController
 
@@ -52,6 +53,13 @@
     [loadingView stopAnimating];
 }
 
+-(void)performSignUpSegue:(NSNotification *)aNotification{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [SocialManager sharedInstance].pendingTasks--;        
+        [self performSegueWithIdentifier:@"SignUpSegue" sender:self];
+    });
+}
+
 #pragma mark - Public
 
 - (void)viewDidLoad{
@@ -72,9 +80,15 @@
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.view.userInteractionEnabled = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(removeLoadingView:)
                                                  name:kHideLoadingViewNotification
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(performSignUpSegue:)
+                                                 name:kDisplaySignUpNotification
                                                object:nil];
 }
 

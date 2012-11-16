@@ -14,6 +14,7 @@
 #define kAccountTwitter @"kAccountTwitter"
 #define kAccountFacebook @"kAccountFacebook"
 #define kAccountListeningTo @"kAccountListeningTo"
+#define kDisplaySignUpNotification @"kDisplaySignUpNotification"
 
 @interface SocialManager : NSObject{
     NSInteger pendingTasks;
@@ -27,7 +28,6 @@
 
 -(BOOL)isAccountEnabledForShare:(NSString *)anAccountId;
 -(void)setAccount:(NSString *)anAccountId enabled:(BOOL)isEnabled;
-
 -(void)shareSong:(Song *)aSong;
 -(void)saveToDisk;
 +(SocialManager *)sharedInstance;
