@@ -16,6 +16,7 @@
     
     StatusView *statusView;
     LoadingView *loadingView;
+    NSTimer *refreshTimer;
 }
 
 - (IBAction)refreshButtonTapped:(id)sender;

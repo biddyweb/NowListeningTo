@@ -68,9 +68,7 @@
     songLabelContainer.layer.cornerRadius = 10;
     
     statusView = [[StatusView alloc] initWithView:self.view];
-    [self.view addSubview:statusView];
-    
-    [self refreshSong];
+    [self.view addSubview:statusView];    
 }
 
 - (void)viewDidLayoutSubviews{
@@ -90,10 +88,19 @@
                                              selector:@selector(performSignUpSegue:)
                                                  name:kDisplaySignUpNotification
                                                object:nil];
+    
+    refreshTimer = [NSTimer scheduledTimerWithTimeInterval:3
+                                                    target:self
+                                                  selector:@selector(refreshSong)
+                                                  userInfo:nil
+                                                   repeats:YES];
+    
+    [self refreshSong];
 }
 
 - (void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
+    [refreshTimer invalidate];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
