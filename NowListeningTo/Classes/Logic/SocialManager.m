@@ -184,16 +184,33 @@
 }
 
 -(void)shareSongWithNLTServer:(Song *)aSong{
-    NSString *urlString = [NSString stringWithFormat:@"http://www.asandbox.com.ar/nowlisteningto/service.php?action=add&song=%@&artist=%@&user=%@",
-                                [aSong.title stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionExternalRepresentation],
-                                [aSong.artist stringByAddingPercentEscapesUsingEncoding:NSStringEncodingConversionExternalRepresentation],
-                                [OpenUDID value]];
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    //  Get base URL, we'll specify the path later
+    NSString *urlString = [NSString stringWithFormat:@"http://127.0.0.1:3000"];
+    NSURL *baseUrl = [NSURL URLWithString:urlString];
+
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
+
+    if (aSong == nil){
+        aSong = [[Song alloc] init];
+        aSong.title = @"Lorem Ipsum";
+        aSong.artist = @"The Lipsums";
+    }
+    
+    //  Get the parameters that are going to be posted
+    NSDictionary *params = @{
+                            @"song" : aSong.title,
+                            @"artist" : aSong.artist,
+                            @"openId" : [OpenUDID value],
+                            @"format" : @"json"
+                            };
+    
+    NSURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"/posts" parameters:params];
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.completionBlock = ^{
         NSError *anError = nil;
+        NSLog(@"LOG: %@", operation.responseString);
         NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
                                                                      options:NSJSONReadingAllowFragments
                                                                        error:&anError];
