@@ -17,7 +17,8 @@
 #import "LoadingView.h"
 
 #define kAccountsDictionary @"kAccountsDictionary"
-#define kServerBaseUrl @"http://192.168.1.106:3000"
+// #define kServerBaseUrl @"http://cryptic-meadow-8748.herokuapp.com/"
+#define kServerBaseUrl @"http://127.0.0.1"
 
 @implementation SocialManager
 @synthesize accountStore, accountsSettings;
