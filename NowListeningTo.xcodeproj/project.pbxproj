@@ -49,6 +49,8 @@
 		67BADC7B163E00C600192ED5 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67BADC7A163E00C600192ED5 /* QuartzCore.framework */; };
 		67E093801629FC63007BD447 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0937F1629FC63007BD447 /* Social.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		67E0938B1629FE4F007BD447 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 67E0938A1629FE4F007BD447 /* Accounts.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		67EBD2BC1659751F001991FC /* SignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67EBD2BB1659751F001991FC /* SignInViewController.m */; };
+		67EBD2C016597795001991FC /* RegistrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 67EBD2BF16597795001991FC /* RegistrationViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +121,10 @@
 		67BADC7A163E00C600192ED5 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		67E0937F1629FC63007BD447 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		67E0938A1629FE4F007BD447 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		67EBD2BA1659751F001991FC /* SignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignInViewController.h; sourceTree = "<group>"; };
+		67EBD2BB1659751F001991FC /* SignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignInViewController.m; sourceTree = "<group>"; };
+		67EBD2BE16597795001991FC /* RegistrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegistrationViewController.h; sourceTree = "<group>"; };
+		67EBD2BF16597795001991FC /* RegistrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegistrationViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +183,10 @@
 		67671BAA1631A49800B0A7EB /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				67EBD2BE16597795001991FC /* RegistrationViewController.h */,
+				67EBD2BF16597795001991FC /* RegistrationViewController.m */,
+				67EBD2BA1659751F001991FC /* SignInViewController.h */,
+				67EBD2BB1659751F001991FC /* SignInViewController.m */,
 				6725B7C31656BCB4009590AA /* SignUpViewController.h */,
 				6725B7C41656BCB4009590AA /* SignUpViewController.m */,
 				67671BAB1631A49800B0A7EB /* LogViewController.h */,
@@ -422,6 +432,8 @@
 				679401DB16389CB0007979DC /* UIImageView+AFNetworking.m in Sources */,
 				67BADC78163DDE3500192ED5 /* LoadingView.m in Sources */,
 				6725B7C51656BCB4009590AA /* SignUpViewController.m in Sources */,
+				67EBD2BC1659751F001991FC /* SignInViewController.m in Sources */,
+				67EBD2C016597795001991FC /* RegistrationViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

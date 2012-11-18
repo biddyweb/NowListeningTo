@@ -17,8 +17,8 @@
 #import "LoadingView.h"
 
 #define kAccountsDictionary @"kAccountsDictionary"
-#define kServerBaseUrl @"http://cryptic-meadow-8748.herokuapp.com/"
-//#define kServerBaseUrl @"http://127.0.0.1:3000"
+//#define kServerBaseUrl @"http://cryptic-meadow-8748.herokuapp.com/"
+#define kServerBaseUrl @"http://127.0.0.1:3000"
 
 @implementation SocialManager
 @synthesize accountStore, accountsSettings;
@@ -299,11 +299,56 @@
         if (!anError && exists){
             aBlock();
         }else{
-            [[NSNotificationCenter defaultCenter] postNotificationName:kDisplaySignUpNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotificationName:kDisplaySignInNotification object:nil];
         }
     };
     
     [operation start];
+}
+
+-(void)signInUserWithParams:(NSDictionary *)aDictionary{
+    //  Get base URL, we'll specify the path later
+    NSURL *baseUrl = [NSURL URLWithString:kServerBaseUrl];
+    
+    AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:baseUrl];
+    
+    //  Get the parameters that are going to be posted
+    NSDictionary *params = @{
+                            @"udid" : [OpenUDID value],
+                            @"email" : [aDictionary objectForKey:@"email"],
+                            @"password" : [aDictionary objectForKey:@"password"],
+                            @"format" : @"json"
+    };
+    
+    NSURLRequest *request = [httpClient requestWithMethod:@"POST" path:@"users/signin" parameters:params];
+    
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    
+    operation.completionBlock = ^{
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *anError = nil;
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
+                                                                         options:NSJSONReadingAllowFragments
+                                                                           error:&anError];
+            
+            BOOL isValid = [[responseDict objectForKey:@"response"] boolValue];
+            
+            if (isValid){
+                [[NSNotificationCenter defaultCenter] postNotificationName:kHideSignInNotification object:nil];
+            }else{
+                NSString *messageError = [responseDict objectForKey:@"message"];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:messageError
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Ok"
+                                                          otherButtonTitles:nil];
+                [alertView show];
+            }
+        });
+    };
+    
+    [operation start];
+    
 }
 
 -(void)signUpUserWithParams:(NSDictionary *)aDictionary{
@@ -335,7 +380,7 @@
             BOOL isValid = [[responseDict objectForKey:@"response"] boolValue];
             
             if (isValid){
-                [[NSNotificationCenter defaultCenter] postNotificationName:kHideSignUpNotification object:nil];
+                [[NSNotificationCenter defaultCenter] postNotificationName:kHideSignInNotification object:nil];
             }else{
                 NSString *messageError = [responseDict objectForKey:@"message"];
                 UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"

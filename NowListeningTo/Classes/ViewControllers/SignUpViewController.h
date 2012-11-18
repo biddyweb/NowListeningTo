@@ -7,14 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface SignUpViewController : UITableViewController{
-    __weak IBOutlet UITextField *passwordTextfield;
+#import "RegistrationViewController.h"
+@interface SignUpViewController : RegistrationViewController{
     __weak IBOutlet UITextField *usernameTextfield;
-    __weak IBOutlet UITextField *emailTextfield;
 }
 
-- (IBAction)closeButtonTapped:(id)sender;
 - (IBAction)signUpButtonTapped:(id)sender;
 
 @end

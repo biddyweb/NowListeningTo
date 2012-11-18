@@ -53,10 +53,10 @@
     [loadingView stopAnimating];
 }
 
--(void)performSignUpSegue:(NSNotification *)aNotification{
+-(void)performSignInSegue:(NSNotification *)aNotification{
     dispatch_async(dispatch_get_main_queue(), ^{
         [SocialManager sharedInstance].pendingTasks--;        
-        [self performSegueWithIdentifier:@"SignUpSegue" sender:self];
+        [self performSegueWithIdentifier:@"SignInSegue" sender:self];
     });
 }
 
@@ -85,8 +85,8 @@
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(performSignUpSegue:)
-                                                 name:kDisplaySignUpNotification
+                                             selector:@selector(performSignInSegue:)
+                                                 name:kDisplaySignInNotification
                                                object:nil];
     
     refreshTimer = [NSTimer scheduledTimerWithTimeInterval:3
