@@ -15,6 +15,7 @@
 #define kAccountFacebook @"kAccountFacebook"
 #define kAccountListeningTo @"kAccountListeningTo"
 #define kDisplaySignUpNotification @"kDisplaySignUpNotification"
+#define kHideSignUpNotification @"kHideSignUpNotification"
 
 @interface SocialManager : NSObject{
     NSInteger pendingTasks;

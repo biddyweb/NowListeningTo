@@ -17,8 +17,8 @@
 #import "LoadingView.h"
 
 #define kAccountsDictionary @"kAccountsDictionary"
-// #define kServerBaseUrl @"http://cryptic-meadow-8748.herokuapp.com/"
-#define kServerBaseUrl @"http://127.0.0.1"
+#define kServerBaseUrl @"http://cryptic-meadow-8748.herokuapp.com/"
+//#define kServerBaseUrl @"http://127.0.0.1:3000"
 
 @implementation SocialManager
 @synthesize accountStore, accountsSettings;
@@ -326,11 +326,26 @@
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     
     operation.completionBlock = ^{
-        NSError *anError = nil;
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
-                                                                     options:NSJSONReadingAllowFragments
-                                                                       error:&anError];
-        NSLog(@"#DEBUG response: %@", operation.responseString);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSError *anError = nil;
+            NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:operation.responseData
+                                                                         options:NSJSONReadingAllowFragments
+                                                                           error:&anError];
+
+            BOOL isValid = [[responseDict objectForKey:@"response"] boolValue];
+            
+            if (isValid){
+                [[NSNotificationCenter defaultCenter] postNotificationName:kHideSignUpNotification object:nil];
+            }else{
+                NSString *messageError = [responseDict objectForKey:@"message"];
+                UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"Error"
+                                                                    message:messageError
+                                                                   delegate:nil
+                                                          cancelButtonTitle:@"Ok"
+                                                          otherButtonTitles:nil];
+                [alertView show];
+            }
+        });
     };
     
     [operation start];

@@ -25,6 +25,12 @@
     return retVal;
 }
 
+#pragma mark - Notifications
+
+-(void)dismiss:(NSNotification *)aNotification{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Public
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -37,6 +43,14 @@
      */
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(dismiss:)
+                                                 name:kHideSignUpNotification
+                                               object:nil];
+}
+
 - (IBAction)closeButtonTapped:(id)sender {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
@@ -45,7 +59,7 @@
     
     if ([self areTextFieldsComplete]){
         NSDictionary *params = @{
-        @"email" : usernameTextfield.text,
+        @"email" : emailTextfield.text,
         @"username" : usernameTextfield.text,
         @"password" : passwordTextfield.text
         };
